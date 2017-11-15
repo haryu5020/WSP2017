@@ -1,0 +1,27 @@
+#body{
+    width: 1500px;
+}
+
+
+#box1_1 {
+    width: 20%;
+    height: 900px;
+    float:left;
+}
+#profile {
+    width:200px;
+    height:30%;
+    border: 1px solid;
+}
+#menu {
+    width: 200px;
+    height: 65%;
+    border: 1px solid;
+    margin-top: 50px;
+}
+#box1_2 {
+    width: 60%;
+    height: 900px;
+    border: 1px solid;
+    float: left;
+}
