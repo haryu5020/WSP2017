@@ -20,7 +20,8 @@
     <link href="${pageContext.request.contextPath}/css/main.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/css/profile.css" rel="stylesheet">
      <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-     </head>
+</head>
+
 <!-- Bootstrap core JavaScript -->
 <script src="${pageContext.request.contextPath}/vendor/jquery/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -63,7 +64,7 @@
              
                 	
 <div class="container">
-	<div class="row">
+	<div class="row" style="width: 1200px; ">
 		<div class="col-lg-3 col-sm-6">
 
             <div class="card hovercard">
