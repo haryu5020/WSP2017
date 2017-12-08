@@ -1,10 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-    <%@ page import="java.sql.DriverManager" %>
-<%@ page import="java.sql.Connection" %>
-<%@ page import="java.sql.Statement" %>
-<%@ page import="java.sql.ResultSet" %>
-<%@ page import="java.sql.SQLException" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,20 +8,15 @@
     <meta name="author" content="">
     <title>Fwitter</title>
     <!-- Bootstrap core CSS -->
-    <link href="${pageContext.request.contextPath}/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
-    <link href="${pageContext.request.contextPath}/css/main.css" rel="stylesheet">
-    <link href="${pageContext.request.contextPath}/css/profile.css" rel="stylesheet">
-     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-</head>
-
+    <link href="./css/main.css" rel="stylesheet"> </head>
 <!-- Bootstrap core JavaScript -->
-<script src="${pageContext.request.contextPath}/vendor/jquery/jquery.min.js"></script>
-<script src="${pageContext.request.contextPath}/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="./vendor/jquery/jquery.min.js"></script>
+<script src="./vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <body>
     <!--DB Connecting -->
-    
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container"> <a class="navbar-brand" href="main.html" style="font-weight:bold; font-size:30px; margin:0; padding:0;">Fwitter</a>
@@ -36,8 +24,8 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active"> <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a> </li>
-                    <form action="logout.jsp" method="post"><li class="nav-item"> <a class="nav-link" href="#loginModal">logout</a> </li></form>
-                    <li class="nav-item"> <a class="nav-link" href="#registerModal">Mypage</a> </li>
+                    <li class="nav-item"> <a class="nav-link" href="#loginModal">Login</a> </li>
+                    <li class="nav-item"> <a class="nav-link" href="#registerModal">Sign-up</a> </li>
                 </ul>
             </div>
         </div>
@@ -46,50 +34,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-3">
-             
-                	
-<div class="container">
-	<div class="row" style="width: 1200px; ">
-		<div class="col-lg-3 col-sm-6">
-
-            <div class="card hovercard">
-                <div class="cardheader">
-
-                </div>
-                <div class="avatar">
-                    <img alt="" src="http://lorempixel.com/100/100/people/9/">
-                </div>
-                <div class="info">
-                    <div class="title">
-                        <a target="_blank" href="http://scripteden.com/">Script Eden</a>
-                    </div>
-                    <div class="desc">Passionate designer</div>
-                    <div class="desc">Curious developer</div>
-                    <div class="desc">Tech geek</div>
-                </div>
-                <div class="bottom">
-                    <a class="btn btn-primary btn-twitter btn-sm" href="https://twitter.com/webmaniac">
-                        <i class="fa fa-twitter"></i>
-                    </a>
-                    <a class="btn btn-danger btn-sm" rel="publisher"
-                       href="https://plus.google.com/+ahmshahnuralam">
-                        <i class="fa fa-google-plus"></i>
-                    </a>
-                    <a class="btn btn-primary btn-sm" rel="publisher"
-                       href="https://plus.google.com/shahnuralam">
-                        <i class="fa fa-facebook"></i>
-                    </a>
-                    <a class="btn btn-warning btn-sm" rel="publisher" href="https://plus.google.com/shahnuralam">
-                        <i class="fa fa-behance"></i>
-                    </a>
-                </div>
-            
-
-        </div>
-
-	</div>
-</div>
-                </div>
+                <h1 class="my-4">Profile</h1>
                 <div class="list-group"> <a href="#" class="list-group-item">Category 1</a> <a href="#" class="list-group-item">Category 2</a> <a href="#" class="list-group-item">Category 3</a> </div>
             </div>
             <!-- /.col-lg-3 -->
