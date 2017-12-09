@@ -46,6 +46,7 @@
         </div>
     </div>
     <script>
+    
         function input_check_func() {
             var name = document.getElementById('userName').value;
             var id = document.getElementById('userId').value;
@@ -58,6 +59,7 @@
                 return false;
             }
             else {
+            		alert("회원가입 성공 !!");
                 return true;
             }
         }

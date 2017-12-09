@@ -14,38 +14,45 @@
 <body>
 <%
 
-        String his_name     = request.getParameter("userName");
-        String his_id     = request.getParameter("userId");
-        String his_pw     = request.getParameter("userPw");
+        String his_name = request.getParameter("userName");
+        String his_id = request.getParameter("userId");
+        String his_pw = request.getParameter("userPw");
         String his_favorite = request.getParameter("userFavorite");
         String his_job = request.getParameter("userJob");     
    
         try {
 
             String driver = "com.mysql.jdbc.Driver";
-    	   Class.forName(driver);
+    	   		Class.forName(driver);
        
-    	   Connection conn=null;
-    	   Statement stmt=null;
-    	   ResultSet rs=null;
+    	   		Connection conn=null;
+    	   		Statement stmt=null;
+    	   		ResultSet rs=null;
 
             String jdbcDriver = "jdbc:mysql://117.17.198.33:3360/wsp2017";
             String dbUser = "khk";
-    	    String dbPass = "khk1!";
+    	    		String dbPass = "khk1!";
             
             conn=DriverManager.getConnection(jdbcDriver,dbUser,dbPass);
-    	    stmt=conn.createStatement();
-   
-            String sql = "INSERT INTO USER VALUES ('"+ his_id + "','" + his_pw + 
+    	    		stmt=conn.createStatement();
+   		
+            String sql = "INSERT INTO user VALUES ('"+ 0 + // 0 넣으면 알아서 increase 됨
+            			"','" + his_id +
+            			"','"+ his_pw + 
                     "','" + his_name + 
-                    "','" + his_favorite + "','" + his_job + "');";
-            st.executeUpdate(sql);
+                    "','" + his_favorite + 
+                    "','" + his_job +
+                    "','" + "test" +
+                    "');";
+            stmt.executeUpdate(sql);
 
             response.sendRedirect("loginForm.jsp");        
             
-        } catch (Exception e) {       
-            out.println("DB �곕�� �ㅽ��");
-        }    
+        } catch (Exception e) {  
+        		System.out.println(e);
+            out.println("DB error");
+        }
+        
     %>
  
 </body>

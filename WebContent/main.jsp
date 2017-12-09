@@ -102,7 +102,10 @@
         </div>
         <!-- /.container -->
     </footer>
+<<<<<<< HEAD
         
+=======
+>>>>>>> e69155899a57530c7c5bc4d0bb62e8bf373b1bf5
 </body>
 
 </html>
