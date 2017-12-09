@@ -95,6 +95,3 @@
     </div>
 </body>
 </html>
-
-
-출처: http://all-record.tistory.com/114 [세상의 모든 기록]

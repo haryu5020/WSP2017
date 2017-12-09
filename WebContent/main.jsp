@@ -130,13 +130,6 @@
         </div>
         <!-- /.container -->
     </footer>
-        <%
-        }catch(SQLException ex){
-        	
-        }finally{
-        	
-        }
-        %>
 </body>
 
 </html>
