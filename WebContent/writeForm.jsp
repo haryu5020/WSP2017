@@ -25,11 +25,11 @@
 <body>
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-        <div class="container"> <a class="navbar-brand" href="main.jsp" style="font-weight:bold; font-size:30px; margin:0; padding:0;">Fwitter</a>
+        <div class="container"> <a class="navbar-brand" href="main.html" style="font-weight:bold; font-size:30px; margin:0; padding:0;">Fwitter</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active"> <a class="nav-link" href="main.jsp">Home<span class="sr-only">(current)</span></a> </li>
+                    <li class="nav-item active"> <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a> </li>
                     <form action="logout.jsp" method="post">
                         <li class="nav-item"> <a class="nav-link" href="#loginModal">logout</a> </li>
                     </form>
@@ -73,28 +73,26 @@
                 </div>
                 <div class = "container">
                     <div class="row">
+                    <form method="post" action="write_check.jsp">
                         <table class="table table-striped" style="text-align: center;">
                             <thead>
                                 <tr>
-                                    <th style="text-aling: center;">번호</th>
-                                    
-                                    <th style="text-aling: center;">제목</th>
-                                    
-                                    <th style="text-aling: center;">작성자</th>
-                                    
-                                    <th style="text-aling: center;">작성일</th>
+                                    <th colspan="2" style="text-aling: center;">글쓰기 양식</th>
+
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>1</td>
-                                    <td>안녕하세요</td>
-                                    <td>홍길동</td>
-                                    <td>2017-12-09</td>
+                                    <td><input type="text" class="form-control" placeholder="글 제목" name="contentTitle" maxlength="50"></td>
+                                </tr>
+                                <tr>
+                                    <td><textarea class="form-control" placeholder="글 내용" name="content" maxlength="2048"></textarea></td>
                                 </tr>
                             </tbody>
+                             
                         </table>
-                        <a href="writeForm.jsp" class="btn btn-primary pull-right">글쓰기</a>
+                        <input type="submit" class="btn btn-primary pull-right" value="글쓰기">
+                       </form>
                     </div>
                 </div>
                 <!-- /.row -->
