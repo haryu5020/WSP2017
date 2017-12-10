@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-<%@ page import="java.io.PrintWriter" %>
-<%@ page import="post.postDAO" %>
-<%@ page import="post.postManager" %>
-<%@ page import="java.util.ArrayList" %>
+<%@ page import = "java.io.PrintWriter"%>
+<%@ page import = "post.postDAO"%>
+<%@ page import = "post.postManager"%>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -23,20 +23,34 @@
 <!-- Bootstrap core JavaScript -->
 <script src="${pageContext.request.contextPath}/vendor/jquery/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<style type="text/css">
-	a, a:hover {
-		color: #000000;
-		text-decoration: none;
-	}
-</style>
+
 <body>
 	<%
-		//기본페이지 확인
-		int pageNumber = 1;
-		if (request.getParameter("pageNumber") != null) {
-			pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
+		String userID = null;
+		if (session.getAttribute("userID") != null){
+			userID = (String)session.getAttribute("userID");
+		}
+		int postID = 0;
+		if(request.getParameter("postID") != null){
+			postID = Integer.parseInt(request.getParameter("postID"));
+		}
+		if (postID == 0) {
+			PrintWriter script = response.getWriter();
+			script.println("<script>");
+			script.println("alert('유효하지 않은 글입니다.')");
+			script.println("location.href = 'main.jsp'");
+			script.println("<script>");
+		}
+		postManager post = new postDAO().getPost(postID);
+		if(!userID.equals(post.getUserID())){
+			PrintWriter script = response.getWriter();
+			script.println("<script>");
+			script.println("alert('권한이 없습니다.')");
+			script.println("location.href = 'main.jsp'");
+			script.println("<script>");
 		}
 	%>
+
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container"> <a class="navbar-brand" href="main.jsp" style="font-weight:bold; font-size:30px; margin:0; padding:0;">Fwitter</a>
@@ -87,50 +101,26 @@
                 </div>
                 <div class = "container">
                     <div class="row">
+                    <form method="post" action="update_check.jsp">
                         <table class="table table-striped" style="text-align: center;">
                             <thead>
                                 <tr>
-                                    <th style="text-aling: center;">번호</th>
-                                    
-                                    <th style="text-aling: center;">제목</th>
-                                    
-                                    <th style="text-aling: center;">작성자</th>
-                                    
-                                    <th style="text-aling: center;">작성일</th>
+                                    <th colspan="2" style="text-aling: center;">글수정 양식</th>
+
                                 </tr>
                             </thead>
                             <tbody>
-                            	<%
-                            		postDAO postDAO = new postDAO();
-                            		ArrayList<postManager> list = postDAO.getList(pageNumber);
-                            		for(int i = 0; i < list.size(); i++){
-                            			
-                            		
-                            	%>
                                 <tr>
-                                    <td><%= list.get(i).getPostID() %></td>
-                                    <td><a href="postView.jsp?postID=<%= list.get(i).getPostID() %>"><%= list.get(i).getPostTitle().replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll("\n","<br>") %></a></td>
-                                    <td><%= list.get(i).getUserID() %></td>
-                                    <td><%= list.get(i).getPostDate().substring(0, 11) + list.get(i).getPostDate().substring(11, 13)+"시" + list.get(i).getPostDate().substring(14, 16) + "분" %></td>
+                                    <td><input type="text" class="form-control" placeholder="글 제목" name="contentTitle" maxlength="50" value="<%= post.getPostTitle() %>"></td>
                                 </tr>
-                                <%
-                               		 }
-                                %>
+                                <tr>
+                                    <td><textarea class="form-control" placeholder="글 내용" name="content" maxlength="2048" value="<%= post.getPostContent() %>"></textarea></td>
+                                </tr>
                             </tbody>
+                             
                         </table>
-                        <%
-                        	if(pageNumber != 1){
-                        %>
-                        	<a href="post.jsp?pageNumber=<%=pageNumber - 1%>" class="btn btn-success btn-arrow-left">이전</a>
-                        <%
-                        	}
-                        	if(postDAO.nextPage(pageNumber)){
-                        %>
-                        	<a href="post.jsp?pageNumber=<%=pageNumber + 1%>" class="btn btn-success btn-arrow-left">다음</a>
-                        <%
-                        	}
-                        %>
-                        <a href="writeForm.jsp" class="btn btn-primary pull-right">글쓰기</a>
+                        <input type="submit" class="btn btn-primary pull-right" value="글쓰기">
+                       </form>
                     </div>
                 </div>
                 <!-- /.row -->

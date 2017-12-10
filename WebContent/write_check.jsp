@@ -36,7 +36,7 @@
 				PrintWriter script = response.getWriter();
 				script.println("<script>");
 				script.println("alert('글쓰기 완료')");
-				script.println("location.href = 'writeForm.jsp'");
+				script.println("location.href = 'main.jsp'");
 				script.println("<script>");
 			}
 		}

@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-<%@ page import="java.io.PrintWriter" %>
-<%@ page import="post.postDAO" %>
-<%@ page import="post.postManager" %>
-<%@ page import="java.util.ArrayList" %>
+ <%@ page import="java.io.PrintWriter" %>
+ <%@ page import="post.postManager" %>
+  <%@ page import="post.postDAO" %>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -23,20 +23,27 @@
 <!-- Bootstrap core JavaScript -->
 <script src="${pageContext.request.contextPath}/vendor/jquery/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<style type="text/css">
-	a, a:hover {
-		color: #000000;
-		text-decoration: none;
-	}
-</style>
+
 <body>
-	<%
-		//기본페이지 확인
-		int pageNumber = 1;
-		if (request.getParameter("pageNumber") != null) {
-			pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
-		}
-	%>
+<% 
+	String userID = null;
+	if(session.getAttribute("userID") != null){
+		userID = (String) session.getAttribute("userID");
+	}
+
+	int postID = 0;
+	if(request.getParameter("postID") != null){
+		postID = Integer.parseInt(request.getParameter("postID"));
+	}
+	if (postID == 0) {
+		PrintWriter script = response.getWriter();
+		script.println("<script>");
+		script.println("alert('유효하지 않은 글입니다.')");
+		script.println("location.href = 'main.jsp'");
+		script.println("<script>");
+	}
+	postManager post = new postDAO().getPost(postID);
+%>
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container"> <a class="navbar-brand" href="main.jsp" style="font-weight:bold; font-size:30px; margin:0; padding:0;">Fwitter</a>
@@ -87,50 +94,43 @@
                 </div>
                 <div class = "container">
                     <div class="row">
+                    
                         <table class="table table-striped" style="text-align: center;">
                             <thead>
                                 <tr>
-                                    <th style="text-aling: center;">번호</th>
-                                    
-                                    <th style="text-aling: center;">제목</th>
-                                    
-                                    <th style="text-aling: center;">작성자</th>
-                                    
-                                    <th style="text-aling: center;">작성일</th>
+                                    <th colspan="3" style="text-aling: center;">게시 글</th>
+
                                 </tr>
                             </thead>
                             <tbody>
-                            	<%
-                            		postDAO postDAO = new postDAO();
-                            		ArrayList<postManager> list = postDAO.getList(pageNumber);
-                            		for(int i = 0; i < list.size(); i++){
-                            			
-                            		
-                            	%>
                                 <tr>
-                                    <td><%= list.get(i).getPostID() %></td>
-                                    <td><a href="postView.jsp?postID=<%= list.get(i).getPostID() %>"><%= list.get(i).getPostTitle().replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll("\n","<br>") %></a></td>
-                                    <td><%= list.get(i).getUserID() %></td>
-                                    <td><%= list.get(i).getPostDate().substring(0, 11) + list.get(i).getPostDate().substring(11, 13)+"시" + list.get(i).getPostDate().substring(14, 16) + "분" %></td>
+                                    <td style="width: 20%;">글 제목 </td>
+                                    <td colspan=2><%= post.getPostTitle() %></td>
                                 </tr>
-                                <%
-                               		 }
-                                %>
+                                <tr>
+                                    <td>작성자 </td>
+                                    <td colspan=2><%= post.getPostTitle() %></td>
+                                </tr>
+                                <tr>
+                                    <td>작성 일자 </td>
+                                    <td colspan=2><%= post.getPostDate().substring(0, 11) + post.getPostDate().substring(11, 13)+"시" + post.getPostDate().substring(14, 16) + "분" %></td>
+                                </tr>
+                                <tr>
+                                    <td>내용 </td>
+                                    <td colspan=2 style="min-height: 200px; tet-aling: left;"><%= post.getPostContent().replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll("\n","<br>") %></td>
+                                </tr>
                             </tbody>
+                             
                         </table>
+                        <a href="main.jsp" class="btn btn-primary">목록</a>
                         <%
-                        	if(pageNumber != 1){
+                        	if(userID != null && userID.equals(post.getUserID())){
                         %>
-                        	<a href="post.jsp?pageNumber=<%=pageNumber - 1%>" class="btn btn-success btn-arrow-left">이전</a>
-                        <%
-                        	}
-                        	if(postDAO.nextPage(pageNumber)){
-                        %>
-                        	<a href="post.jsp?pageNumber=<%=pageNumber + 1%>" class="btn btn-success btn-arrow-left">다음</a>
+                        	<a href="update.jsp?postID=<%= postID %>" class="btn btn-primary"> 수정</a>
+                        	<a onclick="return confirm('정말로 삭제하시겠습니까?')" href="delete.jsp?postID=<%= postID %>" class="btn btn-primary"> 삭제</a>
                         <%
                         	}
                         %>
-                        <a href="writeForm.jsp" class="btn btn-primary pull-right">글쓰기</a>
                     </div>
                 </div>
                 <!-- /.row -->
