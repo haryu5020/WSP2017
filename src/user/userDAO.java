@@ -2,6 +2,7 @@ package user;
 
 import java.sql.*;
 
+
 public class userDAO {
 		
 		private Connection conn=null;
@@ -40,5 +41,42 @@ public class userDAO {
 				e.printStackTrace();
 			}
 			return -2; //DB error
+		}
+		
+		public int join(user user) {
+			String SQL = "INSERT INTO user VALUES (0, ?, ?, ?, ?, ?, 'test')";
+			try {
+				pstmt = conn.prepareStatement(SQL);
+				pstmt.setString(1, user.getUserEmail());
+				pstmt.setString(2, user.getUserPassword());
+				pstmt.setString(3, user.getUserName());
+				pstmt.setString(4, user.getUserFavorite());
+				pstmt.setString(5, user.getUserJob());
+				return pstmt.executeUpdate();
+				
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+			return -1; //DB error
+		}
+		public user getAllUserInfo(String userID){
+			String SQL = "SELECT * FROM user WHERE login_id = ?";
+			user user1 = new user();
+			try {
+				PreparedStatement pstmt = conn.prepareStatement(SQL);
+				pstmt.setString(1,  userID);		
+				rs = pstmt.executeQuery();
+				if(rs.next()) {
+
+					user1.setUserEmail((rs.getString(2)));
+					user1.setUserName(rs.getString(4));
+					user1.setUserFavorite(rs.getString(5));
+					user1.setUserJob(rs.getString(6));
+					user1.setUserProfile(rs.getString(7));
+				}
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+			return user1; 
 		}
 }

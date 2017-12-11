@@ -3,10 +3,18 @@ package user;
 public class user {
 	private int userID;
 	private String userEmail;
-	private String userPassword;
+	private String userPassword;	
+	private String userName;
 	private String userFavorite;
 	private String userJob;
+	private String userProfile;
 	
+	public String getUserProfile() {
+		return userProfile;
+	}
+	public void setUserProfile(String userProfile) {
+		this.userProfile = userProfile;
+	}
 	public int getUserID() {
 		return userID;
 	}
@@ -36,6 +44,12 @@ public class user {
 	}
 	public void setUserJob(String userJob) {
 		this.userJob = userJob;
+	}
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 	
 }

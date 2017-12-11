@@ -2,9 +2,18 @@
     contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"
     import="java.sql.*"%>
+<%@ page import="user.userDAO"  %>
+<%@ page import="java.io.PrintWriter" %>
 <%
     request.setCharacterEncoding("euc-kr");
 %>
+<jsp:useBean id="user" class="user.user" scope="page" />
+<jsp:setProperty name="user" property="userEmail" />
+<jsp:setProperty name="user" property="userPassword" />
+<jsp:setProperty name="user" property="userName" />
+<jsp:setProperty name="user" property="userFavorite" />
+<jsp:setProperty name="user" property="userJob" />
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,47 +22,31 @@
 </head>
 <body>
 <%
-
-        String his_name = request.getParameter("userName");
-        String his_id = request.getParameter("userId");
-        String his_pw = request.getParameter("userPw");
-        String his_favorite = request.getParameter("userFavorite");
-        String his_job = request.getParameter("userJob");     
-   
-        try {
-
-            String driver = "com.mysql.jdbc.Driver";
-    	   		Class.forName(driver);
-       
-    	   		Connection conn=null;
-    	   		Statement stmt=null;
-    	   		ResultSet rs=null;
-
-            String jdbcDriver = "jdbc:mysql://117.17.198.33:3360/wsp2017";
-            String dbUser = "khk";
-    	    		String dbPass = "khk1!";
-            
-            conn=DriverManager.getConnection(jdbcDriver,dbUser,dbPass);
-    	    		stmt=conn.createStatement();
-   		
-            String sql = "INSERT INTO user VALUES ('"+ 0 + // 0 넣으면 알아서 increase 됨
-            			"','" + his_id +
-            			"','"+ his_pw + 
-                    	"','" + his_name + 
-                    	"','" + his_favorite + 
-                    	"','" + his_job +
-                    	"','" + "test" +
-                    	"');";
-            stmt.executeUpdate(sql);
-
-            response.sendRedirect("loginForm.jsp");        
-            
-        } catch (Exception e) {  
-        		System.out.println(e);
-            out.println("DB error");
-        }
-        
-    %>
+	if(user.getUserEmail() == null || user.getUserPassword() == null || user.getUserName() == null 
+	|| user.getUserFavorite() == null || user.getUserJob() == null){
+		PrintWriter script = response.getWriter();
+		script.println("<script>");
+		script.println("alert('Please fill in all blanks.')");
+		script.println("history.back()");
+		script.println("</script>");
+	}else{
+		userDAO userDAO = new userDAO();
+		int result = userDAO.join(user);
+		if(result == -1){
+			PrintWriter script = response.getWriter();
+			script.println("<script>");
+			script.println("alert('We already have same ID.')");
+			script.println("history.back()");
+			script.println("</script>");
+		}
+		else{
+			PrintWriter script = response.getWriter();
+			script.println("<script>");
+			script.println("location.href = 'loginForm.jsp'");
+			script.println("</script>");
+		}	
+	}
+ %>
  
 </body>
 </html>

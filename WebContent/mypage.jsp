@@ -3,6 +3,8 @@
 <%@ page import="java.io.PrintWriter" %>
 <%@ page import="post.postDAO" %>
 <%@ page import="post.postManager" %>
+<%@ page import="user.user" %>
+<%@ page import="user.userDAO" %>
 <%@ page import="java.util.ArrayList" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,6 +17,7 @@
     <!-- Bootstrap core CSS -->
     <link href="${pageContext.request.contextPath}/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
+    <link href="${pageContext.request.contextPath}/css/main.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/css/profile.css" rel="stylesheet">
      <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
@@ -34,6 +37,9 @@
 		if(session.getAttribute("id") != null){
 			userID = (String) session.getAttribute("id");
 		}
+		userDAO userDAO = new userDAO();
+		user userInfo = userDAO.getAllUserInfo(userID);
+		
 	%>
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -77,32 +83,38 @@
                     <div class="row">
                         <form action="mypage_check.jsp" method="post">
                         <table class="table table-striped" style="text-align: center;">
-                            <thead>
+                            <thead >
                                 <tr>
-                                	<th style="text-aling: center;">아이디</th>
-                                
-                                    <th style="text-aling: center;">이름</th>
-                                    
-                                    <th style="text-aling: center;">비밀번호</th>
-                                    
-                                    <th style="text-aling: center;">직업</th>
-                                    
-                                    <th style="text-aling: center;">관심사</th>
-                                    
-                                     <th style="text-aling: center;">사진</th>
-                                </tr>
+                                	<th colspan="3">회원 정보 </th>
                             </thead>
                             <tbody>
                                 <tr>
-                                	<td><input type="text" class="form-control" name="userID" value="<%= userID %>"></td>
-                                    <td><input type="text" class="form-control" name="userName" value="<%= userID %>"></td>
-                                    <td><input type="password" class="form-control" name="password"></td>
-                                    <td></td>
-                                    <td></td>
+                                    <td style="text-aling: center;">아이디</td>
+                                	<td colspan="2"><input type="text" class="form-control" name="userEmail" value="<%= userID %>" readonly="readonly"></td>
+                                </tr>
+                                <tr>
+                                	<td style="text-aling: center;">이름</td>
+                                    <td colspan="2"><input type="text" class="form-control" name="userName" value="<%= userInfo.getUserName() %>"></td>
+                                </tr>
+                                <tr>
+                                	<td style="text-aling: center;">비밀번호</td>
+                                    <td colspan="2"><input type="password" class="form-control" name="userPassword"></td>
+                                </tr>
+                                <tr>
+                                	<td style="text-aling: center;">직업</td>
+                                    <td colspan="2"><input type="text" class="form-control" name="userJob" value="<%= userInfo.getUserJob() %>"></td>
+                                </tr>
+                                <tr>
+                                	<td style="text-aling: center;">관심사</td>
+                                    <td colspan="2"><input type="text" class="form-control" name="userJob" value="<%= userInfo.getUserFavorite() %>"></td>
+                                </tr>
+                                <tr>
+                                	<td style="text-aling: center;">사진</td>
+                                    <td colspan="2"></td>
                                 </tr>
                             </tbody>
                         </table>
-                        <a href="mypage_check.jsp" class="btn btn-primary pull-right">완료</a>
+                        <a href="mypage_check.jsp" class="btn btn-primary pull-right">수정 완료</a>
                         </form>
                     </div>
                 </div>
