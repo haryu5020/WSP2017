@@ -55,8 +55,8 @@ public class postDAO {
 		return -1; //DB오류
 	}
 	
-	public int write(String postTitle, String userID, String postContent, int categoryID) {
-		String SQL = "INSERT INTO POST VALUES (?, ?, ?, ?, ?, ?, ?)";
+	public int write(String postTitle, String userID, String postContent) {
+		String SQL = "INSERT INTO POST VALUES (?, ?, ?, ?, ?, ?)";
 		
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
@@ -66,7 +66,7 @@ public class postDAO {
 			pstmt.setString(4, getDate());
 			pstmt.setString(5, postContent);
 			pstmt.setInt(6, 1);
-			pstmt.setInt(7, categoryID);
+			
 			return pstmt.executeUpdate();
 			
 		} catch(Exception e) {
@@ -79,13 +79,12 @@ public class postDAO {
 	
 	//게시글 리스트
 	public ArrayList<postManager> getList(int pageNumber){
-		String SQL = "SELECT * FROM POST WHERE postID < ? AND category_id = ?  AND postAvailable = 1 ORDER BY postID DESC LIMIT 10";
+		String SQL = "SELECT * FROM POST WHERE postID < ?  AND postAvailable = 1 ORDER BY postID DESC LIMIT 10";
 
 		ArrayList<postManager> list = new ArrayList<postManager>();
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
 			pstmt.setInt(1,  getNext() - (pageNumber - 1) * 10);		
-			pstmt.setInt(2, cg.getCategoryID());
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				postManager post = new postManager();
@@ -95,7 +94,6 @@ public class postDAO {
 				post.setPostDate(rs.getString(4));
 				post.setPostContent(rs.getString(5));
 				post.setPostAvailable(rs.getInt(6));
-				post.setCategoryID(rs.getInt(7));
 				list.add(post);
 			}
 		} catch(Exception e) {

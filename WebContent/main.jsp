@@ -112,12 +112,12 @@
                         <%
                         	if(pageNumber != 1){
                         %>
-                        	<a href="post.jsp?pageNumber=<%=pageNumber - 1%>" class="btn btn-success btn-arrow-left">이전</a>
+                        	<a href="main.jsp?pageNumber=<%=pageNumber - 1%>" class="btn btn-success btn-arrow-left">이전</a>
                         <%
                         	}
                         	if(postDAO.nextPage(pageNumber)){
                         %>
-                        	<a href="post.jsp?pageNumber=<%=pageNumber + 1%>" class="btn btn-success btn-arrow-left">다음</a>
+                        	<a href="main.jsp?pageNumber=<%=pageNumber + 1%>" class="btn btn-success btn-arrow-left">다음</a>
                         <%
                         	}
                         	

@@ -29,7 +29,7 @@
 		else
 		{
 			postDAO postDAO = new postDAO();
-			int result = postDAO.write(post.getPostTitle(), userID, post.getPostContent(), category.getCategoryID());
+			int result = postDAO.write(post.getPostTitle(), userID, post.getPostContent());
 			if(result == -1)
 			{
 				PrintWriter script = response.getWriter();
