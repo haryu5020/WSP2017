@@ -3,6 +3,8 @@
 <%@ page import="java.io.PrintWriter" %>
 <%@ page import="post.postDAO" %>
 <%@ page import="post.postManager" %>
+<%@ page import="category.category" %>
+<%@ page import="category.categoryDAO" %>
 <%@ page import="java.util.ArrayList" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,6 +38,7 @@
 		if (request.getParameter("pageNumber") != null) {
 			pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
 		}
+		
 	%>
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -44,9 +47,7 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active"> <a class="nav-link" href="main.jsp">Home<span class="sr-only">(current)</span></a> </li>
-                    <form action="logout.jsp" method="post">
-                        <li class="nav-item"> <a class="nav-link" href="#loginModal">logout</a> </li>
-                    </form>
+                        <li class="nav-item"> <a class="nav-link" href="logout.jsp">logout</a> </li>
                     <li class="nav-item"> <a class="nav-link" href="#registerModal">Mypage</a> </li>
                 </ul>
             </div>
@@ -63,7 +64,7 @@
                                 <div class="cardheader"> </div>
                                 <div class="avatar"> <img src="http://lorempixel.com/100/100/people/9/"> </div>
                                 <div class="info">
-                                    <div class="title"> <a target="_blank" href="#">HyunJun Sung</a> </div>
+                                    <div class="title"><a target="_blank" href="mypage.jsp"></a> </div>
                                     <div class="desc">Passionate designer</div>
                                     <div class="desc">Curious developer</div>
                                 </div>
@@ -74,17 +75,26 @@
                         </div>
                     </div>
                 </div>
-                <div class="list-group" style="margin-top:30px; margin-bottom:20px"> <a href="#" class="list-group-item">Category 1</a> <a href="#" class="list-group-item">Category 2</a> <a href="#" class="list-group-item">Category 3</a> </div>
+                <div class="list-group" style="margin-top:30px; margin-bottom:20px">
+                <table> 
+                	<tbody>
+                	<%
+                		categoryDAO categoryDAO = new categoryDAO();
+                		ArrayList<category> listcategory = categoryDAO.getCategoryName();
+                		for(int i = 0; i < listcategory.size(); i++){
+                	%>
+                		<tr>
+                			<td><a href="main.jsp?categoryID=<%= listcategory.get(i).getCategoryID() %>" class="list-group-item"><%=listcategory.get(i).getCategoryName() %></a> </td>
+                		</tr>
+                	<%
+                		}
+                	%>
+                	</tbody>
+				</table>
+                </div>
             </div>
             <!-- /.col-lg-3 -->
             <div class="col-lg-9">
-                <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
-                    <ol class="carousel-indicators">
-                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                    </ol>
-                </div>
                 <div class = "container">
                     <div class="row">
                         <table class="table table-striped" style="text-align: center;">
@@ -109,7 +119,7 @@
                             	%>
                                 <tr>
                                     <td><%= list.get(i).getPostID() %></td>
-                                    <td><a href="postView.jsp?postID=<%= list.get(i).getPostID() %>"><%= list.get(i).getPostTitle().replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll("\n","<br>") %></a></td>
+                                    <td><a href="postView.jsp?categoryID=<%= listcategory.get(i).getCategoryID() %>&postID=<%= list.get(i).getPostID() %>"><%= list.get(i).getPostTitle().replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll("\n","<br>") %></a></td>
                                     <td><%= list.get(i).getUserID() %></td>
                                     <td><%= list.get(i).getPostDate().substring(0, 11) + list.get(i).getPostDate().substring(11, 13)+"½Ã" + list.get(i).getPostDate().substring(14, 16) + "ºÐ" %></td>
                                 </tr>

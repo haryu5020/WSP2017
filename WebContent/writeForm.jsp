@@ -23,6 +23,12 @@
 <script src="${pageContext.request.contextPath}/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <body>
+<%
+		String userID = null;
+		if(session.getAttribute("id") != null){
+			userID = (String) session.getAttribute("id");
+		}
+		 %>
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container"> <a class="navbar-brand" href="main.jsp" style="font-weight:bold; font-size:30px; margin:0; padding:0;">Fwitter</a>
@@ -30,9 +36,7 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active"> <a class="nav-link" href="main.jsp">Home<span class="sr-only">(current)</span></a> </li>
-                    <form action="logout.jsp" method="post">
-                        <li class="nav-item"> <a class="nav-link" href="#loginModal">logout</a> </li>
-                    </form>
+                        <li class="nav-item"> <a class="nav-link" href="logout.jsp">logout</a> </li>
                     <li class="nav-item"> <a class="nav-link" href="#registerModal">Mypage</a> </li>
                 </ul>
             </div>
@@ -83,10 +87,10 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><input type="text" class="form-control" placeholder="글 제목" name="contentTitle" maxlength="50"></td>
+                                    <td><input type="text" class="form-control" placeholder="글 제목" name="postTitle" maxlength="50"></td>
                                 </tr>
                                 <tr>
-                                    <td><textarea class="form-control" placeholder="글 내용" name="content" maxlength="2048"></textarea></td>
+                                    <td><textarea class="form-control" placeholder="글 내용" name="postContent" maxlength="2048"></textarea></td>
                                 </tr>
                             </tbody>
                              

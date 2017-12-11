@@ -27,8 +27,8 @@
 <body>
 <% 
 	String userID = null;
-	if(session.getAttribute("userID") != null){
-		userID = (String) session.getAttribute("userID");
+	if(session.getAttribute("id") != null){
+		userID = (String) session.getAttribute("id");
 	}
 
 	int postID = 0;
@@ -51,9 +51,7 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active"> <a class="nav-link" href="main.jsp">Home<span class="sr-only">(current)</span></a> </li>
-                    <form action="logout.jsp" method="post">
-                        <li class="nav-item"> <a class="nav-link" href="#loginModal">logout</a> </li>
-                    </form>
+                        <li class="nav-item"> <a class="nav-link" href="logout.jsp">logout</a> </li>
                     <li class="nav-item"> <a class="nav-link" href="#registerModal">Mypage</a> </li>
                 </ul>
             </div>

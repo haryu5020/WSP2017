@@ -14,30 +14,35 @@
 <body>
 	<%
 		String userID = null;
-		if(session.getAttribute("userID") != null){
-			userID = (String) session.getAttribute("userID");
+		if(session.getAttribute("id") != null){
+			userID = (String) session.getAttribute("id");
 		}
-		if (post.getPostTitle() ==null || post.getPostContent() == null){
+		if (post.getPostTitle() == null || post.getPostContent() == null){
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('입력이 안 된 사항이 있습니다.')");
 			script.println("history.back()");
 			script.println("</script>");
-		}else{
+		}
+		else
+		{
 			postDAO postDAO = new postDAO();
 			int result = postDAO.write(post.getPostTitle(), userID, post.getPostContent());
-			if(result == -1){
-			PrintWriter script = response.getWriter();
-			script.println("<script>");
-			script.println("alert('글쓰기에 실패했습니다.')");
-			script.println("history.back()");
-			script.println("</script>");
-			}else{
+			if(result == -1)
+			{
+				PrintWriter script = response.getWriter();
+				script.println("<script>");
+				script.println("alert('글쓰기에 실패했습니다.')");
+				script.println("history.back()");
+				script.println("</script>");
+			}
+			else
+			{
 				PrintWriter script = response.getWriter();
 				script.println("<script>");
 				script.println("alert('글쓰기 완료')");
-				script.println("location.href = 'main.jsp'");
 				script.println("<script>");
+				response.sendRedirect("main.jsp"); 
 			}
 		}
 		
