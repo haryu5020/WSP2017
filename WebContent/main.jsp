@@ -32,6 +32,7 @@
 </style>
 <body>
 	<%
+		
 		//기본페이지 확인
 		int pageNumber = 1;
 		if (request.getParameter("pageNumber") != null) {

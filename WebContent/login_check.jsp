@@ -23,6 +23,7 @@
     	userDAO userDAO = new userDAO();
     	int result = userDAO.login(user.getUserEmail(), user.getUserPassword());
     	if(result == 1){
+    		session.setAttribute("id", user.getUserID());
     		PrintWriter script = response.getWriter();
     		script.println("<script>");
     		script.println("location.href = 'main.jsp'");
