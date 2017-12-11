@@ -113,7 +113,7 @@
                                 </tr>
                                  <tr>
                                 		<td> ÆÄÀÏ </td>
-                                		<a href="fileDown.jsp?uploadFile=<%=post.getPostFile()%>"> <%= post.getPostFile() %></a>
+                                		<a href="file/<%=post.getPostFile()%>"> <%= post.getPostFile() %></a>
                                 </tr>
                             </tbody>
                              
