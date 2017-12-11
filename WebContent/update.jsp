@@ -33,13 +33,14 @@
 		int postID = 0;
 		if(request.getParameter("postID") != null){
 			postID = Integer.parseInt(request.getParameter("postID"));
+
 		}
 		if (postID == 0) {
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('유효하지 않은 글입니다.')");
 			script.println("location.href = 'main.jsp'");
-			script.println("<script>");
+			script.println("</script>");
 		}
 		postManager post = new postDAO().getPost(postID);
 		if(!userID.equals(post.getUserID())){
@@ -47,7 +48,7 @@
 			script.println("<script>");
 			script.println("alert('권한이 없습니다.')");
 			script.println("location.href = 'main.jsp'");
-			script.println("<script>");
+			script.println("</script>");
 		}
 	%>
 
@@ -58,9 +59,9 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active"> <a class="nav-link" href="main.jsp">Home<span class="sr-only">(current)</span></a> </li>
-                    <form action="logout.jsp" method="post">
-                        <li class="nav-item"> <a class="nav-link" href="#loginModal">logout</a> </li>
-                    </form>
+
+					<a class="nav-link" href="logout.jsp">logout</a> </li>
+
                     <li class="nav-item"> <a class="nav-link" href="#registerModal">Mypage</a> </li>
                 </ul>
             </div>
@@ -92,16 +93,10 @@
             </div>
             <!-- /.col-lg-3 -->
             <div class="col-lg-9">
-                <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
-                    <ol class="carousel-indicators">
-                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                    </ol>
-                </div>
+                
                 <div class = "container">
                     <div class="row">
-                    <form method="post" action="update_check.jsp">
+                    <form method="post" action="update_check.jsp?postID=<%=postID %>">
                         <table class="table table-striped" style="text-align: center;">
                             <thead>
                                 <tr>
@@ -111,10 +106,10 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><input type="text" class="form-control" placeholder="글 제목" name="contentTitle" maxlength="50" value="<%= post.getPostTitle() %>"></td>
+                                    <td><input type="text" class="form-control" placeholder="글 제목" name="postTitle" maxlength="50" value="<%= post.getPostTitle() %>"></td>
                                 </tr>
                                 <tr>
-                                    <td><textarea class="form-control" placeholder="글 내용" name="content" maxlength="2048" value="<%= post.getPostContent() %>"></textarea></td>
+                                    <td><textarea class="form-control" placeholder="글 내용" name="postContent" maxlength="2048"><%= post.getPostContent() %></textarea></td>
                                 </tr>
                             </tbody>
                              

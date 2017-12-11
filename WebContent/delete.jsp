@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-        <%@ page import = "post.postManager" %>
+    <%@ page import = "post.postManager" %>
     <%@ page import = "post.postDAO" %>
     <%@ page import = "java.io.PrintWriter" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -24,15 +24,16 @@
 			script.println("<script>");
 			script.println("alert('유효하지 않은 글입니다.')");
 			script.println("location.href = 'main.jsp'");
-			script.println("<script>");
+			script.println("</script>");
 		}
 		postManager post = new postDAO().getPost(postID);
+		System.out.println(post);
 		if(!userID.equals(post.getUserID())){
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('권한이 없습니다.')");
 			script.println("location.href = 'main.jsp'");
-			script.println("<script>");
+			script.println("</script>");
 		}else{
 				postDAO postDAO = new postDAO();
 				int result = postDAO.delete(postID);
@@ -46,7 +47,7 @@
 					PrintWriter script = response.getWriter();
 					script.println("<script>");
 					script.println("alert('글 삭제 완료')");
-					script.println("<script>");
+					script.println("</script>");
 					response.sendRedirect("main.jsp");
 				}
 		}

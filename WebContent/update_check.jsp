@@ -11,32 +11,31 @@
 </head>
 <body>
 	<%
-		String userID = null;
-		if(session.getAttribute("id") != null){
-			userID = (String) session.getAttribute("id");
-		}
-		int postID = 0;
-		if(request.getParameter("postID") != null){
-			postID = Integer.parseInt(request.getParameter("postID"));
-		}
-		if (postID == 0) {
-			PrintWriter script = response.getWriter();
-			script.println("<script>");
-			script.println("alert('유효하지 않은 글입니다.')");
-			script.println("<script>");
-			response.sendRedirect("main.jsp");
-		}
-		postManager post = new postDAO().getPost(postID);
-		System.out.println(userID);
-		if(!userID.equals(post.getUserID())){
-
-			PrintWriter script = response.getWriter();
-			script.println("<script>");
-			script.println("alert('권한이 없습니다.')");
-			script.println("<script>");
-			response.sendRedirect("main.jsp");
+	String userID = null;
+	if(session.getAttribute("id") != null){
+		userID = (String) session.getAttribute("id");
+	}
+	int postID = 0;
+	if(request.getParameter("postID") != null){
+		postID = Integer.parseInt(request.getParameter("postID"));
+	}
+	System.out.println(postID);
+	if (postID == 0) {
+		PrintWriter script = response.getWriter();
+		script.println("<script>");
+		script.println("alert('유효하지 않은 글입니다.')");
+		script.println("location.href = 'main.jsp'");
+		script.println("</script>");
+	}
+	postManager post = new postDAO().getPost(postID);
+	if(!userID.equals(post.getUserID())){
+		PrintWriter script = response.getWriter();
+		script.println("<script>");
+		script.println("alert('권한이 없습니다.')");
+		script.println("location.href = 'main.jsp'");
+		script.println("</script>");
 		}else{
-			if (request.getParameter("PostTitle") ==null || request.getParameter("PostContent") == null){
+			if (request.getParameter("postTitle") == null || request.getParameter("postContent") == null){
 				PrintWriter script = response.getWriter();
 				script.println("<script>");
 				script.println("alert('입력이 안 된 사항이 있습니다.')");
@@ -44,7 +43,7 @@
 				script.println("</script>");
 			}else{
 				postDAO postDAO = new postDAO();
-				int result = postDAO.update(postID,request.getParameter("PostTitle"),request.getParameter("PostContent") );
+				int result = postDAO.update(postID,request.getParameter("postTitle"),request.getParameter("postContent") );
 				if(result == -1){
 				PrintWriter script = response.getWriter();
 				script.println("<script>");
@@ -55,7 +54,7 @@
 					PrintWriter script = response.getWriter();
 					script.println("<script>");
 					script.println("alert('글 수정 완료')");
-					script.println("<script>");
+					script.println("</script>");
 					response.sendRedirect("main.jsp");
 				}
 			}

@@ -2,12 +2,11 @@ package post;
 
 import java.sql.*;
 import java.util.ArrayList;
-import category.category;
 
 public class postDAO {
 	private Connection conn = null;
 	private ResultSet rs = null;
-	private category cg = new category();
+
 	
 	public postDAO() {
 		try {
@@ -149,9 +148,9 @@ public class postDAO {
 		
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
-			pstmt.setInt(1, postTitle);
+			pstmt.setString(1, postTitle);
 			pstmt.setString(2, postContent);
-			pstmt.setString(3, postID);
+			pstmt.setInt(3, postID);
 			
 			return pstmt.executeUpdate();
 		} catch(Exception e) {
