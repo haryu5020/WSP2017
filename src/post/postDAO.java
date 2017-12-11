@@ -55,7 +55,7 @@ public class postDAO {
 		return -1; //DB¿À·ù
 	}
 	
-	public int write(String postTitle, String userID, String postContent) {
+	public int write(String postTitle, String userID, String postContent, int categoryID) {
 		String SQL = "INSERT INTO POST VALUES (?, ?, ?, ?, ?, ?, ?)";
 		
 		try {
@@ -66,7 +66,7 @@ public class postDAO {
 			pstmt.setString(4, getDate());
 			pstmt.setString(5, postContent);
 			pstmt.setInt(6, 1);
-			pstmt.setInt(7, cg.getCategoryID());
+			pstmt.setInt(7, categoryID);
 			return pstmt.executeUpdate();
 			
 		} catch(Exception e) {
@@ -84,10 +84,8 @@ public class postDAO {
 		ArrayList<postManager> list = new ArrayList<postManager>();
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
-			pstmt.setInt(1,  getNext() - (pageNumber - 1) * 10);
-			
+			pstmt.setInt(1,  getNext() - (pageNumber - 1) * 10);		
 			pstmt.setInt(2, cg.getCategoryID());
-			System.out.println(cg.getCategoryID());
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				postManager post = new postManager();

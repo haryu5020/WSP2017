@@ -75,23 +75,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="list-group" style="margin-top:30px; margin-bottom:20px">
-                <table> 
-                	<tbody>
-                	<%
-                		categoryDAO categoryDAO = new categoryDAO();
-                		ArrayList<category> listcategory = categoryDAO.getCategoryName();
-                		for(int i = 0; i < listcategory.size(); i++){
-                	%>
-                		<tr>
-                			<td><a href="main.jsp?categoryID=<%= listcategory.get(i).getCategoryID() %>" class="list-group-item"><%=listcategory.get(i).getCategoryName() %></a> </td>
-                		</tr>
-                	<%
-                		}
-                	%>
-                	</tbody>
-				</table>
-                </div>
             </div>
             <!-- /.col-lg-3 -->
             <div class="col-lg-9">
@@ -114,12 +97,10 @@
                             		postDAO postDAO = new postDAO();
                             		ArrayList<postManager> list = postDAO.getList(pageNumber);
                             		for(int i = 0; i < list.size(); i++){
-                            			
-                            		
                             	%>
                                 <tr>
                                     <td><%= list.get(i).getPostID() %></td>
-                                    <td><a href="postView.jsp?categoryID=<%= listcategory.get(i).getCategoryID() %>&postID=<%= list.get(i).getPostID() %>"><%= list.get(i).getPostTitle().replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll("\n","<br>") %></a></td>
+                                    <td><a href="postView.jsp?postID=<%= list.get(i).getPostID() %>"><%= list.get(i).getPostTitle().replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll("\n","<br>") %></a></td>
                                     <td><%= list.get(i).getUserID() %></td>
                                     <td><%= list.get(i).getPostDate().substring(0, 11) + list.get(i).getPostDate().substring(11, 13)+"시" + list.get(i).getPostDate().substring(14, 16) + "분" %></td>
                                 </tr>
@@ -139,8 +120,11 @@
                         	<a href="post.jsp?pageNumber=<%=pageNumber + 1%>" class="btn btn-success btn-arrow-left">다음</a>
                         <%
                         	}
+                        	
                         %>
-                        <a href="writeForm.jsp" class="btn btn-primary pull-right">글쓰기</a>
+             
+                        	<a href="writeForm.jsp" class="btn btn-primary pull-right">글쓰기</a>
+                        	
                     </div>
                 </div>
                 <!-- /.row -->

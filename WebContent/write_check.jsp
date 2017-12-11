@@ -5,6 +5,8 @@
     <jsp:useBean id="post" class="post.postManager" scope="page" />
     <jsp:setProperty name="post" property="postTitle" />
     <jsp:setProperty name="post" property="postContent" />
+    <jsp:useBean id="category" class="category.category" scope="page" />
+    <jsp:setProperty name="category" property="categoryID" />
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -27,7 +29,7 @@
 		else
 		{
 			postDAO postDAO = new postDAO();
-			int result = postDAO.write(post.getPostTitle(), userID, post.getPostContent());
+			int result = postDAO.write(post.getPostTitle(), userID, post.getPostContent(), category.getCategoryID());
 			if(result == -1)
 			{
 				PrintWriter script = response.getWriter();

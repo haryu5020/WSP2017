@@ -2,6 +2,8 @@ package category;
 
 public class category {
 	private int categoryID;
+	private String categoryName;
+	
 	public int getCategoryID() {
 		return categoryID;
 	}
@@ -14,5 +16,5 @@ public class category {
 	public void setCategoryName(String categoryName) {
 		this.categoryName = categoryName;
 	}
-	private String categoryName;
+	
 }

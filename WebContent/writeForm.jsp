@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@ page import="category.category" %>
+<%@ page import="category.categoryDAO" %>
+<%@ page import="java.util.ArrayList" %>
     
 <!DOCTYPE html>
 <html lang="en">
@@ -15,6 +18,7 @@
     <!-- Custom styles for this template -->
     <link href="${pageContext.request.contextPath}/css/main.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/css/profile.css" rel="stylesheet">
+     <link href="${pageContext.request.contextPath}/css/dropdown.css" rel="stylesheet">
      <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 
@@ -64,25 +68,18 @@
                         </div>
                     </div>
                 </div>
-                <div class="list-group" style="margin-top:30px; margin-bottom:20px"> <a href="#" class="list-group-item">Category 1</a> <a href="#" class="list-group-item">Category 2</a> <a href="#" class="list-group-item">Category 3</a> </div>
+                
             </div>
             <!-- /.col-lg-3 -->
             <div class="col-lg-9">
-                <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
-                    <ol class="carousel-indicators">
-                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                    </ol>
-                </div>
+                
                 <div class = "container">
                     <div class="row">
                     <form method="post" action="write_check.jsp">
                         <table class="table table-striped" style="text-align: center;">
                             <thead>
                                 <tr>
-                                    <th colspan="2" style="text-aling: center;">글쓰기 양식</th>
-
+                                    <th colspan="3" style="text-aling: center;">글쓰기 양식</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -91,6 +88,9 @@
                                 </tr>
                                 <tr>
                                     <td><textarea class="form-control" placeholder="글 내용" name="postContent" maxlength="2048"></textarea></td>
+                                </tr>
+                                <tr>
+                                
                                 </tr>
                             </tbody>
                              
@@ -114,5 +114,22 @@
         <!-- /.container -->
     </footer>
 </body>
+<script>
+/* When the user clicks on the button, 
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(e) {
+  if (!e.target.matches('.dropbtn')) {
+    var myDropdown = document.getElementById("myDropdown");
+      if (myDropdown.classList.contains('show')) {
+        myDropdown.classList.remove('show');
+      }
+  }
+}
+</script>
 
 </html>
