@@ -20,7 +20,7 @@
                     <img src="./img/loginlogo.PNG"/>
                     <form method="post" action='login_check.jsp' name="login_form">
                         <p>
-                            <input type="text" class="form-control input-md" name="userEmail" id="email" placeholder="Email"> </p>
+                            <input type="text" class="form-control input-md" name="userEmail" id="userEmail" placeholder="Email"> </p>
                         <p>
                             <input type="password" class="form-control input-md" name="userPassword" placeholder="Password"> </p>
                         <p>

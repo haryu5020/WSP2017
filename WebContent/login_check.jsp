@@ -23,23 +23,20 @@
     	userDAO userDAO = new userDAO();
     	int result = userDAO.login(user.getUserEmail(), user.getUserPassword());
     	if(result == 1){
-    		session.setAttribute("id", user.getUserID());
-    		PrintWriter script = response.getWriter();
-    		script.println("<script>");
-    		script.println("location.href = 'main.jsp'");
-    		script.println("</script>");
+    		session.setAttribute("id", user.getUserEmail());
+    		response.sendRedirect("main.jsp");
     	}
     	else if (result == 0){
     		PrintWriter script = response.getWriter();
     		script.println("<script>");
-    		script.println("alert('비밀번호가 틀립니다.')");
+    		script.println("alert('Wrong password.')");
     		script.println("history.back()");
     		script.println("</script>");
     	}
     	else if (result == -1){
     		PrintWriter script = response.getWriter();
     		script.println("<script>");
-    		script.println("alert('존재하지 않는 아이디입니다.')");
+    		script.println("alert('We don't have that ID.')");
     		script.println("history.back()");
     		script.println("</script>");
     	}
