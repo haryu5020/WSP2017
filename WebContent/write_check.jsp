@@ -1,7 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-    <%@ page import = "post.postDAO" %>
-    <%@ page import = "java.io.PrintWriter" %>
+<%@ page import = "post.postDAO" %>
+<%@ page import = "java.io.PrintWriter" %>
+<%@ page import = "com.oreilly.servlet.MultipartRequest" %>
+<%@ page import = "com.oreilly.servlet.multipart.DefaultFileRenamePolicy" %>
+<%@ page import = "java.io.*" %>
+
     <jsp:useBean id="post" class="post.postManager" scope="page" />
     <jsp:setProperty name="post" property="postTitle" />
     <jsp:setProperty name="post" property="postContent" />
@@ -13,11 +17,32 @@
 </head>
 <body>
 	<%
+	
+	/* 파일 업로드 관련 */
+	int maxSize = 1024*1024*10;
+	String realFolder = ""; /* 저장 경로 */
+	String uploadFile = ""; /* 파일명 */
+	String savePath = request.getServletContext().getRealPath("/file");
+	String encoding = "euc-kr";		
+	MultipartRequest multi = new MultipartRequest(request, savePath, maxSize, encoding, new DefaultFileRenamePolicy());
+	uploadFile = multi.getFilesystemName("postFile");
+	
+	String originFile = multi.getOriginalFileName("postFile");
+	String sysFilename = multi.getFilesystemName("postFile"); /* 파일 이름 중복시 실제 저장될 이름 */
+	/* System.out.println(sysFilename); */
+	File file = new File(savePath + uploadFile);
+	
+	/*======================================================== */
+			
 		String userID = null;
+		String postTitle = multi.getParameter("postTitle");
+		String postContent = multi.getParameter("postContent");
+		/* writeForm.jsp 의 입력 form 을 건드려서 multi식으로 받기로함 */
+		
 		if(session.getAttribute("id") != null){
 			userID = (String) session.getAttribute("id");
 		}
-		if (post.getPostTitle() == null || post.getPostContent() == null){
+		if (postTitle == null || postContent == null){
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('입력이 안 된 사항이 있습니다.')");
@@ -27,7 +52,7 @@
 		else
 		{
 			postDAO postDAO = new postDAO();
-			int result = postDAO.write(post.getPostTitle(), userID, post.getPostContent());
+			int result = postDAO.write(postTitle, userID, postContent, sysFilename);
 			if(result == -1)
 			{
 				PrintWriter script = response.getWriter();

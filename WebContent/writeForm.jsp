@@ -72,7 +72,7 @@
             <div class="col-lg-9">
                 <div class = "container">
                     <div class="row">
-                    <form method="post" action="write_check.jsp">
+                    <form method="post" action="write_check.jsp" enctype="multipart/form-data">
                         <table class="table table-striped" style="text-align: center;">
                             <thead>
                                 <tr>

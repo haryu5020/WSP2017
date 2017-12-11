@@ -22,7 +22,7 @@ public class postDAO {
 		}
 	}
 	
-	//ÇöÀç ¼­¹ö½Ã°£ ¹Þ¾Æ¿À±â
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ã°ï¿½ ï¿½Þ¾Æ¿ï¿½ï¿½ï¿½
 	public String getDate() {
 		String SQL = "SELECT NOW()";
 		try {
@@ -38,7 +38,7 @@ public class postDAO {
 		
 	}
 	
-	//°Ô½Ã±Û ¹øÈ£
+	//ï¿½Ô½Ã±ï¿½ ï¿½ï¿½È£
 	public int getNext() {
 		String SQL = "SELECT postID FROM POST ORDER BY postID desc";
 		try {
@@ -47,15 +47,15 @@ public class postDAO {
 			if(rs.next()) {
 				return rs.getInt(1) + 1;
 			}
-			return 1; // Ã¹ ¹øÂ° °Ô½Ã¹°ÀÎ °æ¿ì
+			return 1; // Ã¹ ï¿½ï¿½Â° ï¿½Ô½Ã¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-		return -1; //DB¿À·ù
+		return -1; //DBï¿½ï¿½ï¿½ï¿½
 	}
 	
-	public int write(String postTitle, String userID, String postContent) {
-		String SQL = "INSERT INTO POST VALUES (?, ?, ?, ?, ?, ?)";
+	public int write(String postTitle, String userID, String postContent, String postFile) {
+		String SQL = "INSERT INTO POST VALUES (?, ?, ?, ?, ?, ?, ?)";
 		
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
@@ -65,7 +65,7 @@ public class postDAO {
 			pstmt.setString(4, getDate());
 			pstmt.setString(5, postContent);
 			pstmt.setInt(6, 1);
-			
+			pstmt.setString(7, postFile);
 			return pstmt.executeUpdate();
 			
 		} catch(Exception e) {
@@ -74,9 +74,9 @@ public class postDAO {
 		return -1;
 	}
 	
-/* °Ô½Ã±Û ¸®½ºÆ® Ãâ·Â ÇÔ¼ö ½ÃÀÛ*/	
+/* ï¿½Ô½Ã±ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½ ï¿½ï¿½ï¿½ï¿½*/	
 	
-	//°Ô½Ã±Û ¸®½ºÆ®
+	//ï¿½Ô½Ã±ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®
 	public ArrayList<postManager> getList(int pageNumber){
 		String SQL = "SELECT * FROM POST WHERE postID < ?  AND postAvailable = 1 ORDER BY postID DESC LIMIT 10";
 
@@ -93,6 +93,7 @@ public class postDAO {
 				post.setPostDate(rs.getString(4));
 				post.setPostContent(rs.getString(5));
 				post.setPostAvailable(rs.getInt(6));
+				post.setPostFile(rs.getString(7));
 				list.add(post);
 			}
 		} catch(Exception e) {
@@ -101,7 +102,7 @@ public class postDAO {
 		return list; 
 	}
 	
-	//ÆäÀÌÁö Á¸Àç¿©ºÎ 
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ç¿©ï¿½ï¿½ 
 	public boolean nextPage(int pageNumber) {
 		String SQL = "SELECT * FROM POST WHERE postID < ? AND postAvailable = 1 ORDER BY postID DESC LIMIT 10";
 		try {
@@ -114,12 +115,12 @@ public class postDAO {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-		return false; //DB¿À·ù
+		return false; //DBï¿½ï¿½ï¿½ï¿½
 	}
 	
-	/* °Ô½Ã±Û ¸®½ºÆ® Ãâ·Â ÇÔ¼ö ³¡*/	
+	/* ï¿½Ô½Ã±ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½ ï¿½ï¿½*/	
 	
-	/* °Ô½Ã±Û ³»¿ë Ãâ·Â */
+	/* ï¿½Ô½Ã±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ */
 	public postManager getPost(int postID) {
 		String SQL = "SELECT * FROM POST WHERE postID = ?";
 		try {
@@ -134,15 +135,16 @@ public class postDAO {
 				post.setPostDate(rs.getString(4));
 				post.setPostContent(rs.getString(5));
 				post.setPostAvailable(rs.getInt(6));
+				post.setPostFile(rs.getString(7));
 				return post;
 			}
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-		return null; //DB¿À·ù
+		return null; //DBï¿½ï¿½ï¿½ï¿½
 	}
 	
-	/* °Ô½Ã±Û ³»¿ë ¼öÁ¤ */
+	/* ï¿½Ô½Ã±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ */
 	public int update(int postID, String postTitle, String postContent) {
 		String SQL = "UPDATE POST SET postTitle =?, postContent = ? WHERE postID = ?";
 		
@@ -159,7 +161,7 @@ public class postDAO {
 		return -1;
 	}
 	
-	/* °Ô½Ã±Û ³»¿ë »èÁ¦ */
+	/* ï¿½Ô½Ã±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ */
 	public int delete(int postID) {
 		String SQL = "UPDATE POST SET postAvailable = 0 WHERE postID = ?";
 		

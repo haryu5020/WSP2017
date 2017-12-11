@@ -7,7 +7,14 @@ public class postManager {
 	private String postDate;
 	private String postContent;
 	private int postAvailable;
+	private String postFile;
 	
+	public String getPostFile() {
+		return postFile;
+	}
+	public void setPostFile(String postFile) {
+		this.postFile = postFile;
+	}
 	public int getPostID() {
 		return postID;
 	}

@@ -111,6 +111,10 @@
                                     <td>내용 </td>
                                     <td colspan=2 style="min-height: 200px; tet-aling: left;"><%= post.getPostContent().replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll("\n","<br>") %></td>
                                 </tr>
+                                 <tr>
+                                		<td> 파일 </td>
+                                		<a href="fileDown.jsp?uploadFile=<%=post.getPostFile()%>"> <%= post.getPostFile() %></a>
+                                </tr>
                             </tbody>
                              
                         </table>
