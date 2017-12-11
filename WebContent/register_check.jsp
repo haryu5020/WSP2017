@@ -39,11 +39,11 @@
             String sql = "INSERT INTO user VALUES ('"+ 0 + // 0 넣으면 알아서 increase 됨
             			"','" + his_id +
             			"','"+ his_pw + 
-                    "','" + his_name + 
-                    "','" + his_favorite + 
-                    "','" + his_job +
-                    "','" + "test" +
-                    "');";
+                    	"','" + his_name + 
+                    	"','" + his_favorite + 
+                    	"','" + his_job +
+                    	"','" + "test" +
+                    	"');";
             stmt.executeUpdate(sql);
 
             response.sendRedirect("loginForm.jsp");        

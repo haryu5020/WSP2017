@@ -4,6 +4,7 @@
 <%
     request.setCharacterEncoding("euc-kr");
 %>
+
 <!DOCTYPE html>
 <html lang="en">
 

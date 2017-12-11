@@ -26,17 +26,20 @@
     	
         String jdbcDriver = "jdbc:mysql://117.17.198.33:3360/wsp2017";
         String dbUser = "khk";
-    	String dbPass = "khk1!";
+    		String dbPass = "khk1!";
     		
-    	conn=DriverManager.getConnection(jdbcDriver,dbUser,dbPass);
-    	stmt=conn.createStatement();
+    		conn=DriverManager.getConnection(jdbcDriver,dbUser,dbPass);
+    		stmt=conn.createStatement();
        
         String user_id = request.getParameter("eid");
         String user_pw = request.getParameter("passwd");
        
-        String sql = "SELECT * FROM USERTABLE WHERE USER_ID='" + user_id + "' AND USER_PW='" + user_pw + "'";
+        String sql = "SELECT * FROM user WHERE login_id='" + user_id + "' AND passwd='" + user_pw + "'";
+        
+        rs = stmt.executeQuery(sql);
         
         Boolean isLogin = false;
+        
         while(rs.next()) {
 
             isLogin = true;
@@ -48,10 +51,12 @@
             response.sendRedirect("main.jsp");    
         } else {
 
-            %> <script> alert("Check your ID or Password, It's wrong"); history.go(-1); </script> <% }
+            %> <script> alert("Check your ID or Password, It's wrong"); history.go(-1); </script> <% 
+        }
                                                                       
-        } catch (Exception e) {       
-        out.println("DB Connect fail");
+        } catch (Exception e) {
+		e.printStackTrace();
+        	out.println("DB Connect fail");
     }
     %>                                                              
  
