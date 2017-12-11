@@ -87,6 +87,9 @@
                                     <td><input type="text" class="form-control" placeholder="글 제목" name="postTitle" maxlength="50"></td>
                                 </tr>
                                 <tr>
+                                		<td><input type="file" class="form-control" name="postFile"></td>
+                                </tr>
+                                <tr>
                                     <td><textarea class="form-control" placeholder="글 내용" name="postContent" maxlength="2048"></textarea></td>
                                 </tr>
                                 <tr>
