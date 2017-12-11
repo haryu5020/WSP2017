@@ -1,7 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
+<!--<%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-<%@ page import="java.util.ArrayList" %>
-    
+-->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,33 +11,27 @@
     <meta name="author" content="">
     <title>Fwitter</title>
     <!-- Bootstrap core CSS -->
-    <link href="${pageContext.request.contextPath}/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
-    <link href="${pageContext.request.contextPath}/css/main.css" rel="stylesheet">
-    <link href="${pageContext.request.contextPath}/css/profile.css" rel="stylesheet">
-     <link href="${pageContext.request.contextPath}/css/dropdown.css" rel="stylesheet">
-     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-</head>
-
+    <link href="./css/main.css" rel="stylesheet">
+    <link href="./css/profile.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet"> </head>
 <!-- Bootstrap core JavaScript -->
-<script src="${pageContext.request.contextPath}/vendor/jquery/jquery.min.js"></script>
-<script src="${pageContext.request.contextPath}/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="./vendor/jquery/jquery.min.js"></script>
+<script src="./vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <body>
-<%
-		String userID = null;
-		if(session.getAttribute("id") != null){
-			userID = (String) session.getAttribute("id");
-		}
-		 %>
     <!-- Navigation -->
+    <% 
+           
+    %>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-        <div class="container"> <a class="navbar-brand" href="main.jsp" style="font-weight:bold; font-size:30px; margin:0; padding:0;">Fwitter</a>
+        <div class="container"> <a class="navbar-brand" href="main.html" style="font-weight:bold; font-size:30px; margin:0; padding:0;">Fwitter</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active"> <a class="nav-link" href="main.jsp">Home<span class="sr-only">(current)</span></a> </li>
-                        <li class="nav-item"> <a class="nav-link" href="logout.jsp">logout</a> </li>
+                    <li class="nav-item active"> <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a> </li>
+                    <li class="nav-item"> <a class="nav-link" href="logout.jsp">logout</a> </li>
                     <li class="nav-item"> <a class="nav-link" href="mypage.jsp">Mypage</a> </li>
                 </ul>
             </div>
@@ -72,31 +65,32 @@
             <div class="col-lg-9">
                 <div class = "container">
                     <div class="row">
-                    <form method="post" action="write_check.jsp">
+                        <form action="mypage_check.jsp" method="post">
                         <table class="table table-striped" style="text-align: center;">
                             <thead>
                                 <tr>
-                                    <th colspan="3" style="text-aling: center;">±€æ≤±‚ æÁΩƒ</th>
+                                    <th style="text-aling: center;">Ïù¥Î¶Ñ</th>
+                                    
+                                    <th style="text-aling: center;">ÎπÑÎ∞ÄÎ≤àÌò∏</th>
+                                    
+                                    <th style="text-aling: center;">ÏßÅÏóÖ</th>
+                                    
+                                    <th style="text-aling: center;">Í¥ÄÏã¨ÏÇ¨</th>
+                                    
+                                     <th style="text-aling: center;">ÏÇ¨ÏßÑ</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><input type="text" class="form-control" placeholder="±€ ¡¶∏Ò" name="postTitle" maxlength="50"></td>
-                                </tr>
-                                <tr>
-                                		<td><input type="file" class="form-control" name="postFile"></td>
-                                </tr>
-                                <tr>
-                                    <td><textarea class="form-control" placeholder="±€ ≥ªøÎ" name="postContent" maxlength="2048"></textarea></td>
-                                </tr>
-                                <tr>
-                                
+                                    <td></td>
+                                    <td><input type="password" class="form-control" name="password"></td>
+                                    <td></td>
+                                    <td></td>
                                 </tr>
                             </tbody>
-                             
                         </table>
-                        <input type="submit" class="btn btn-primary pull-right" value="±€æ≤±‚">
-                       </form>
+                        <a href="mypage_check.jsp" class="btn btn-primary pull-right">ÏôÑÎ£å</a>
+                        </form>
                     </div>
                 </div>
                 <!-- /.row -->
@@ -114,6 +108,5 @@
         <!-- /.container -->
     </footer>
 </body>
-
 
 </html>

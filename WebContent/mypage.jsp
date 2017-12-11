@@ -3,7 +3,6 @@
 <%@ page import="java.io.PrintWriter" %>
 <%@ page import="post.postDAO" %>
 <%@ page import="post.postManager" %>
-
 <%@ page import="java.util.ArrayList" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,7 +15,6 @@
     <!-- Bootstrap core CSS -->
     <link href="${pageContext.request.contextPath}/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
-    <link href="${pageContext.request.contextPath}/css/main.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/css/profile.css" rel="stylesheet">
      <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
@@ -32,12 +30,10 @@
 </style>
 <body>
 	<%
-		//기본페이지 확인
-		int pageNumber = 1;
-		if (request.getParameter("pageNumber") != null) {
-			pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
+		String userID = null;
+		if(session.getAttribute("id") != null){
+			userID = (String) session.getAttribute("id");
 		}
-		
 	%>
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -79,51 +75,35 @@
             <div class="col-lg-9">
                 <div class = "container">
                     <div class="row">
+                        <form action="mypage_check.jsp" method="post">
                         <table class="table table-striped" style="text-align: center;">
                             <thead>
                                 <tr>
-                                    <th style="text-aling: center;">번호</th>
+                                	<th style="text-aling: center;">아이디</th>
+                                
+                                    <th style="text-aling: center;">이름</th>
                                     
-                                    <th style="text-aling: center;">제목</th>
+                                    <th style="text-aling: center;">비밀번호</th>
                                     
-                                    <th style="text-aling: center;">작성자</th>
+                                    <th style="text-aling: center;">직업</th>
                                     
-                                    <th style="text-aling: center;">작성일</th>
+                                    <th style="text-aling: center;">관심사</th>
+                                    
+                                     <th style="text-aling: center;">사진</th>
                                 </tr>
                             </thead>
                             <tbody>
-                            	<%
-                            		postDAO postDAO = new postDAO();
-                            		ArrayList<postManager> list = postDAO.getList(pageNumber);
-                            		for(int i = 0; i < list.size(); i++){
-                            	%>
                                 <tr>
-                                    <td><%= list.get(i).getPostID() %></td>
-                                    <td><a href="postView.jsp?postID=<%= list.get(i).getPostID() %>"><%= list.get(i).getPostTitle().replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll("\n","<br>") %></a></td>
-                                    <td><%= list.get(i).getUserID() %></td>
-                                    <td><%= list.get(i).getPostDate().substring(0, 11) + list.get(i).getPostDate().substring(11, 13)+"시" + list.get(i).getPostDate().substring(14, 16) + "분" %></td>
+                                	<td><input type="text" class="form-control" name="userID" value="<%= userID %>"></td>
+                                    <td><input type="text" class="form-control" name="userName" value="<%= userID %>"></td>
+                                    <td><input type="password" class="form-control" name="password"></td>
+                                    <td></td>
+                                    <td></td>
                                 </tr>
-                                <%
-                               		 }
-                                %>
                             </tbody>
                         </table>
-                        <%
-                        	if(pageNumber != 1){
-                        %>
-                        	<a href="main.jsp?pageNumber=<%=pageNumber - 1%>" class="btn btn-success btn-arrow-left">이전</a>
-                        <%
-                        	}
-                        	if(postDAO.nextPage(pageNumber)){
-                        %>
-                        	<a href="main.jsp?pageNumber=<%=pageNumber + 1%>" class="btn btn-success btn-arrow-left">다음</a>
-                        <%
-                        	}
-                        	
-                        %>
-             
-                        	<a href="writeForm.jsp" class="btn btn-primary pull-right">글쓰기</a>
-                        	
+                        <a href="mypage_check.jsp" class="btn btn-primary pull-right">완료</a>
+                        </form>
                     </div>
                 </div>
                 <!-- /.row -->

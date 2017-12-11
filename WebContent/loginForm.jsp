@@ -20,9 +20,9 @@
                     <img src="./img/loginlogo.PNG"/>
                     <form method="post" action='login_check.jsp' name="login_form">
                         <p>
-                            <input type="text" class="form-control input-md" name="eid" id="email" placeholder="Email"> </p>
+                            <input type="text" class="form-control input-md" name="userEmail" id="email" placeholder="Email"> </p>
                         <p>
-                            <input type="password" class="form-control input-md" name="passwd" placeholder="Password"> </p>
+                            <input type="password" class="form-control input-md" name="userPassword" placeholder="Password"> </p>
                         <p>
                             <button type="submit" class="btn btn-primary" id="sign-in-button">Sign in</button>
                             <a href="register.jsp">Sign up?</a>
