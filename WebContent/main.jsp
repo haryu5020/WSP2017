@@ -70,7 +70,7 @@
                         <div class="col-lg-3 col-sm-6">
                             <div class="card hovercard">
                                 <div class="cardheader"> </div>
-                                <div class="avatar"> <img src="http://lorempixel.com/100/100/people/9/"> </div>
+                                <div class="avatar"> <img src="./profile/<%=userInfo.getUserProfile()%>"> </div> <!-- ÇÁ»ç ºÎ -->
                                 <div class="info">
                                     <div class="title"><a target="_blank" href="mypage.jsp"><%=userInfo.getUserName() %></a> </div>
                                     <div class="desc"><%=userInfo.getUserJob() %></div>

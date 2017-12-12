@@ -5,6 +5,10 @@
 <%@ page import="post.postManager" %>
 <%@ page import="user.userDAO" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import = "com.oreilly.servlet.MultipartRequest" %>
+<%@ page import = "com.oreilly.servlet.multipart.DefaultFileRenamePolicy" %>
+<%@ page import = "java.io.*" %>
+
 <jsp:useBean id="user" class="user.user" scope="page" />
 <jsp:setProperty name="user" property="userEmail" />
 <jsp:setProperty name="user" property="userPassword" />
@@ -39,13 +43,39 @@
 </style>
 <body>
 	<%
+	/* 파일 업로드 관련 */
+	int maxSize = 1024*1024*10;
+	String realFolder = ""; /* 저장 경로 */
+	String uploadFile = ""; /* 파일명 */
+	String savePath = request.getServletContext().getRealPath("./profile/");
+	File isDir = new File(savePath);
+	if(!isDir.isDirectory()){
+		System.out.println("No directory");
+		isDir.mkdir();
+	}
+	String encoding = "euc-kr";		
+	MultipartRequest multi = new MultipartRequest(request, savePath, maxSize, encoding, new DefaultFileRenamePolicy());
+	uploadFile = multi.getFilesystemName("userProfile");
+	
+	String originFile = multi.getOriginalFileName("userProfile");
+	String sysFilename = multi.getFilesystemName("userProfile"); /* 파일 이름 중복시 실제 저장될 이름 */
+/* 	System.out.println(sysFilename); */
+	File file = new File(savePath + uploadFile);
+	/*======================================================== */
+		String userEmail = multi.getParameter("userEmail");
+		String userPassword = multi.getParameter("userPassword");
+		String userName = multi.getParameter("userName");
+		String userFavorite = multi.getParameter("userFavorite");
+		String userJob = multi.getParameter("userJob");
+		
+		
 		String userID = null;
 		if(session.getAttribute("id") != null){
 			userID = (String) session.getAttribute("id");
 		}
 
 		userDAO userDAO = new userDAO();
-		int result = userDAO.update(user);
+		int result = userDAO.update(userName, userFavorite, userJob, sysFilename, userID, userPassword);
 		if(result == -1){
 			PrintWriter script = response.getWriter();
 			script.println("<script>");

@@ -63,7 +63,7 @@
                         <div class="col-lg-3 col-sm-6">
                             <div class="card hovercard">
                                 <div class="cardheader"> </div>
-                                <div class="avatar"> <img> </div>
+                                <div class="avatar"> <img src="./profile/<%=userInfo.getUserProfile()%>"> </div> <!-- 프사 부 -->
                                 <div class="info">
                                     <div class="title"><a target="_blank" href="mypage.jsp"><%=userInfo.getUserName() %></a> </div>
                                     <div class="desc"><%=userInfo.getUserJob() %></div>
@@ -81,7 +81,7 @@
             <div class="col-lg-9">
                 <div class = "container"  style="width:400px;">
                     <div class="row">
-                        <form action="mypage_check.jsp" method="post">
+                        <form action="mypage_check.jsp" method="post" enctype="multipart/form-data">
                         <table class="table table-striped" style="text-align: center;">
                             <thead >
                                 <tr>
@@ -110,7 +110,7 @@
                                 </tr>
                                 <tr>
                                 	<td style="text-aling: center;">사진</td>
-                                    <td colspan="2"><input type="text" class="form-control" name="userProfile" id="userProfile" value="1"></td>
+                                    <td colspan="2"><input type="file" class="form-control" name="userProfile" id="userProfile"></td>
                                 </tr>
                             </tbody>
                         </table>

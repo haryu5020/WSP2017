@@ -44,7 +44,7 @@ public class userDAO {
 		}
 		
 		public int join(user user) {
-			String SQL = "INSERT INTO user VALUES (0, ?, ?, ?, ?, ?, 'test')";
+			String SQL = "INSERT INTO user VALUES (0, ?, ?, ?, ?, ?, 'default')";
 			try {
 				pstmt = conn.prepareStatement(SQL);
 				pstmt.setString(1, user.getUserEmail());
@@ -79,18 +79,17 @@ public class userDAO {
 			}
 			return user1; 
 		}
-		public int update(user user) {
+		public int update(String userName, String favorite, String job, String profile, String login_id, String login_pw) {
 			String SQL = "UPDATE user SET name =?, favorite = ?, job = ?, profile_path = ? WHERE login_id = ? AND passwd = ?";
-
 			try {
 				PreparedStatement pstmt = conn.prepareStatement(SQL);
-				pstmt.setString(1, user.getUserName());
-				pstmt.setString(2, user.getUserFavorite());
-				pstmt.setString(3, user.getUserJob());
-				pstmt.setString(4, user.getUserProfile());
-				pstmt.setString(5, user.getUserEmail());
-				pstmt.setString(6, user.getUserPassword());
-				
+				pstmt.setString(1, userName);
+				pstmt.setString(2, favorite);
+				pstmt.setString(3, job);
+				pstmt.setString(4, profile);
+				pstmt.setString(5, login_id);
+				pstmt.setString(6, login_pw);
+				System.out.println();
 				return pstmt.executeUpdate();
 			} catch(Exception e) {
 				e.printStackTrace();

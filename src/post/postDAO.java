@@ -99,7 +99,6 @@ public class postDAO {
 				post.setPostAvailable(rs.getInt(6));
 				if(rs.getString(7) == null) {
 					post.setPostFile("no file");
-					System.out.println(rs.getString(7));
 				}else {
 					post.setPostFile(rs.getString(7));
 				}
@@ -147,7 +146,6 @@ public class postDAO {
 				post.setPostAvailable(rs.getInt(6));
 				if(rs.getString(7) == null) {
 					post.setPostFile("no file");
-					System.out.println(rs.getString(7));
 				}else {
 					post.setPostFile(rs.getString(7));
 				}
