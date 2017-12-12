@@ -86,7 +86,7 @@
             </div>
             <!-- /.col-lg-3 -->
             <div class="col-lg-9">
-                <div class = "container">
+                <div class = "container" style="margin-bottom: 10px;">
                     <div class="row">
                         <table class="table table-striped" style="text-align: center;">
                             <thead>

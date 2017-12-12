@@ -48,7 +48,7 @@
         </div>
     </nav>
     <!-- Page Content -->
-    <div class="container" style="margin-top:30px;">
+    <div class="container" style="margin-top:30px; margin-bottom: 10px;">
         <div class="row">
             <div class="col-lg-3">
                 <div class="container">
@@ -56,7 +56,7 @@
                         <div class="col-lg-3 col-sm-6">
                             <div class="card hovercard">
                                 <div class="cardheader"> </div>
-                                <div class="avatar"> <img src="http://lorempixel.com/100/100/people/9/"> </div>
+                                <div class="avatar"><img src="./profile/<%=userInfo.getUserProfile()%>"> </div>
                                 <div class="info">
                                     <div class="title"><a target="_blank" href="mypage.jsp"><%=userInfo.getUserName() %></a> </div>
                                     <div class="desc"><%=userInfo.getUserJob() %></div>
@@ -75,22 +75,22 @@
             <div class="col-lg-9">
                 <div class = "container">
                     <div class="row">
-                    <form method="post" action="write_check.jsp" enctype="multipart/form-data">
-                        <table class="table table-striped" style="text-align: center;">
+                    <form method="post" action="write_check.jsp" enctype="multipart/form-data" style="text-align: center;width:85%; margin-left:40px;">
+                        <table class="table table-striped" style="text-align: center;width:100%;">
                             <thead>
                                 <tr>
-                                    <th colspan="3" style="text-aling: center;">글쓰기 양식</th>
+                                    <th colspan="3" style="text-align: center;">글쓰기 양식</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><input type="text" class="form-control" placeholder="글 제목" name="postTitle" maxlength="50"></td>
+                                    <td><input type="text" class="form-control" placeholder="글 제목" name="postTitle" maxlength="50" style="width:100%;"></td>
                                 </tr>
                                 <tr>
                                 		<td><input type="file" class="form-control" name="postFile"></td>
                                 </tr>
                                 <tr>
-                                    <td><textarea class="form-control" placeholder="글 내용" name="postContent" maxlength="2048"></textarea></td>
+                                    <td><textarea class="form-control" placeholder="글 내용" name="postContent" maxlength="2048" style="width:100%; height:300px;"></textarea></td>
                                 </tr>
                                 <tr>
                                 
