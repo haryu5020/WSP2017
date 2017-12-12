@@ -93,7 +93,12 @@ public class postDAO {
 				post.setPostDate(rs.getString(4));
 				post.setPostContent(rs.getString(5));
 				post.setPostAvailable(rs.getInt(6));
-				post.setPostFile(rs.getString(7));
+				if(rs.getString(7) == null) {
+					post.setPostFile("no file");
+					System.out.println(rs.getString(7));
+				}else {
+					post.setPostFile(rs.getString(7));
+				}
 				list.add(post);
 			}
 		} catch(Exception e) {
@@ -135,7 +140,12 @@ public class postDAO {
 				post.setPostDate(rs.getString(4));
 				post.setPostContent(rs.getString(5));
 				post.setPostAvailable(rs.getInt(6));
-				post.setPostFile(rs.getString(7));
+				if(rs.getString(7) == null) {
+					post.setPostFile("no file");
+					System.out.println(rs.getString(7));
+				}else {
+					post.setPostFile(rs.getString(7));
+				}
 				return post;
 			}
 		} catch(Exception e) {
