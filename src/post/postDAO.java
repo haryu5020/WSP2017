@@ -149,6 +149,7 @@ public class postDAO {
 				}else {
 					post.setPostFile(rs.getString(7));
 				}
+				post.setUserName(rs.getString(8));
 				return post;
 			}
 		} catch(Exception e) {
