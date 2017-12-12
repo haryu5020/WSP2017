@@ -3,7 +3,8 @@
 <%@ page import="java.io.PrintWriter" %>
 <%@ page import="post.postDAO" %>
 <%@ page import="post.postManager" %>
-
+<%@ page import="user.user" %>
+<%@ page import="user.userDAO" %>
 <%@ page import="java.util.ArrayList" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,6 +33,13 @@
 </style>
 <body>
 	<%
+		String userID = null;
+		if (session.getAttribute("id") != null) {
+			userID = (String)session.getAttribute("id");
+		}
+		
+		userDAO userDAO = new userDAO();
+		user userInfo = userDAO.getAllUserInfo(userID);
 		
 		//기본페이지 확인
 		int pageNumber = 1;
@@ -47,7 +55,7 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active"> <a class="nav-link" href="main.jsp">Home<span class="sr-only">(current)</span></a> </li>
-                        <li class="nav-item"> <a class="nav-link" href="logout.jsp">logout</a> </li>
+                    <li class="nav-item"> <a class="nav-link" href="logout.jsp">logout</a> </li>
                     <li class="nav-item"> <a class="nav-link" href="mypage.jsp">Mypage</a> </li>
                 </ul>
             </div>
@@ -64,9 +72,9 @@
                                 <div class="cardheader"> </div>
                                 <div class="avatar"> <img src="http://lorempixel.com/100/100/people/9/"> </div>
                                 <div class="info">
-                                    <div class="title"><a target="_blank" href="mypage.jsp"></a> </div>
-                                    <div class="desc">Passionate designer</div>
-                                    <div class="desc">Curious developer</div>
+                                    <div class="title"><a target="_blank" href="mypage.jsp"><%=userInfo.getUserName() %></a> </div>
+                                    <div class="desc"><%=userInfo.getUserJob() %></div>
+                                    <div class="desc"><%=userInfo.getUserFavorite() %></div>
                                 </div>
                                 <div class="bottom"> 
                                     

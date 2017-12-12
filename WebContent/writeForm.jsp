@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%@ page import="java.util.ArrayList" %>
-    
+<%@ page import="user.user" %>
+<%@ page import="user.userDAO" %>    
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,6 +31,8 @@
 		if(session.getAttribute("id") != null){
 			userID = (String) session.getAttribute("id");
 		}
+		userDAO userDAO = new userDAO();
+		user userInfo = userDAO.getAllUserInfo(userID);
 		 %>
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -55,9 +58,9 @@
                                 <div class="cardheader"> </div>
                                 <div class="avatar"> <img src="http://lorempixel.com/100/100/people/9/"> </div>
                                 <div class="info">
-                                    <div class="title"> <a target="_blank" href="#">HyunJun Sung</a> </div>
-                                    <div class="desc">Passionate designer</div>
-                                    <div class="desc">Curious developer</div>
+                                    <div class="title"><a target="_blank" href="mypage.jsp"><%=userInfo.getUserName() %></a> </div>
+                                    <div class="desc"><%=userInfo.getUserJob() %></div>
+                                    <div class="desc"><%=userInfo.getUserFavorite() %></div>
                                 </div>
                                 <div class="bottom"> 
                                     

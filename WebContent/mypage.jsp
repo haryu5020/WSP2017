@@ -49,7 +49,7 @@
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active"> <a class="nav-link" href="main.jsp">Home<span class="sr-only">(current)</span></a> </li>
                         <li class="nav-item"> <a class="nav-link" href="logout.jsp">logout</a> </li>
-                    <li class="nav-item"> <a class="nav-link" href="#registerModal">Mypage</a> </li>
+                    <li class="nav-item"> <a class="nav-link" href="mypage.jsp">Mypage</a> </li>
                 </ul>
             </div>
         </div>
@@ -63,11 +63,11 @@
                         <div class="col-lg-3 col-sm-6">
                             <div class="card hovercard">
                                 <div class="cardheader"> </div>
-                                <div class="avatar"> <img src="http://lorempixel.com/100/100/people/9/"> </div>
+                                <div class="avatar"> <img> </div>
                                 <div class="info">
-                                    <div class="title"><a target="_blank" href="mypage.jsp"></a> </div>
-                                    <div class="desc">Passionate designer</div>
-                                    <div class="desc">Curious developer</div>
+                                    <div class="title"><a target="_blank" href="mypage.jsp"><%=userInfo.getUserName() %></a> </div>
+                                    <div class="desc"><%=userInfo.getUserJob() %></div>
+                                    <div class="desc"><%=userInfo.getUserFavorite() %></div>
                                 </div>
                                 <div class="bottom"> 
                                     
@@ -79,13 +79,13 @@
             </div>
             <!-- /.col-lg-3 -->
             <div class="col-lg-9">
-                <div class = "container">
+                <div class = "container"  style="width:400px;">
                     <div class="row">
                         <form action="mypage_check.jsp" method="post">
                         <table class="table table-striped" style="text-align: center;">
                             <thead >
                                 <tr>
-                                	<th colspan="3">회원 정보 </th>
+                                	<th colspan="3"">회원 정보 </th>
                             </thead>
                             <tbody>
                                 <tr>

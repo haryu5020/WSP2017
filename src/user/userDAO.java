@@ -79,4 +79,22 @@ public class userDAO {
 			}
 			return user1; 
 		}
+		public int update(user user) {
+			String SQL = "UPDATE user SET name = ?, favorite = ?, job = ?, profile_path = ? WHERE login_id = ? AND passwd = ?";
+			
+			try {
+				PreparedStatement pstmt = conn.prepareStatement(SQL);
+				pstmt.setString(1, user.getUserName());
+				pstmt.setString(2, user.getUserFavorite());
+				pstmt.setString(3, user.getUserJob());
+				pstmt.setString(4, user.getUserProfile());
+				pstmt.setString(5, user.getUserEmail());
+				pstmt.setString(6, user.getUserPassword());
+				
+				return pstmt.executeUpdate();
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+			return -1;
+		}
 }

@@ -3,6 +3,8 @@
 <%@ page import = "java.io.PrintWriter"%>
 <%@ page import = "post.postDAO"%>
 <%@ page import = "post.postManager"%>
+<%@ page import = "user.user" %>
+<%@ page import = "user.userDAO" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -50,6 +52,9 @@
 			script.println("location.href = 'main.jsp'");
 			script.println("</script>");
 		}
+		userDAO userDAO = new userDAO();
+		user userInfo = userDAO.getAllUserInfo(userID);
+		
 	%>
 
     <!-- Navigation -->
@@ -60,7 +65,7 @@
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active"> <a class="nav-link" href="main.jsp">Home<span class="sr-only">(current)</span></a> </li>
 
-					<a class="nav-link" href="logout.jsp">logout</a> </li>
+					<li><a class="nav-link" href="logout.jsp">logout</a> </li>
 
                     <li class="nav-item"> <a class="nav-link" href="#registerModal">Mypage</a> </li>
                 </ul>
@@ -78,9 +83,9 @@
                                 <div class="cardheader"> </div>
                                 <div class="avatar"> <img src="http://lorempixel.com/100/100/people/9/"> </div>
                                 <div class="info">
-                                    <div class="title"> <a target="_blank" href="#">HyunJun Sung</a> </div>
-                                    <div class="desc">Passionate designer</div>
-                                    <div class="desc">Curious developer</div>
+                                    <div class="title"><a target="_blank" href="mypage.jsp"><%=userInfo.getUserName() %></a> </div>
+                                    <div class="desc"><%=userInfo.getUserJob() %></div>
+                                    <div class="desc"><%=userInfo.getUserFavorite() %></div>
                                 </div>
                                 <div class="bottom"> 
                                     
