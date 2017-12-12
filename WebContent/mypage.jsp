@@ -114,7 +114,7 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <a href="mypage_check.jsp" class="btn btn-primary pull-right">수정 완료</a>
+                       		 <button type="submit" class="btn btn-primary pull-right" id="sign-in-button">수정 완료</button>
                         </form>
                     </div>
                 </div>
