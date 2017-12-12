@@ -55,7 +55,7 @@
         </div>
     </nav>
     <!-- Page Content -->
-    <div class="container" style="margin-top:30px;">
+    <div class="container" style="margin-top:30px; margin-bottom: 10px;">
         <div class="row">
             <div class="col-lg-3">
                 <div class="container">
@@ -79,10 +79,10 @@
             </div>
             <!-- /.col-lg-3 -->
             <div class="col-lg-9">
-                <div class = "container"  style="width:400px;">
+                <div class = "container">
                     <div class="row">
-                        <form action="mypage_check.jsp" method="post" enctype="multipart/form-data">
-                        <table class="table table-striped" style="text-align: center;">
+                        <form action="mypage_check.jsp" method="post" enctype="multipart/form-data"   style="width:95%; text-align:center;">
+                        <table class="table table-striped" style="text-align: center;width:100%;">
                             <thead >
                                 <tr>
                                 	<th colspan="3">회원 정보 </th>
@@ -90,23 +90,23 @@
                             <tbody>
                                 <tr>
                                     <td style="text-aling: center;">아이디</td>
-                                	<td colspan="2"><input type="text" class="form-control" name="userEmail" id="userEmail" value="<%= userID %>" readonly="readonly"></td>
+                                	<td colspan="2"><input type="text" class="form-control" name="userEmail" id="userEmail" style="width:95%;" value="<%= userID %>" readonly="readonly"></td>
                                 </tr>
                                 <tr>
                                 	<td style="text-aling: center;">이름</td>
-                                    <td colspan="2"><input type="text" class="form-control" name="userName" id="userName" value="<%= userInfo.getUserName() %>"></td>
+                                    <td colspan="2"><input type="text" class="form-control" name="userName" id="userName" style="width:95%;" value="<%= userInfo.getUserName() %>"></td>
                                 </tr>
                                 <tr>
                                 	<td style="text-aling: center;">비밀번호</td>
-                                    <td colspan="2"><input type="password" class="form-control" name="userPassword" id="userPassword"></td>
+                                    <td colspan="2"><input type="password" class="form-control" name="userPassword" id="userPassword" style="width:95%;"></td>
                                 </tr>
                                 <tr>
                                 	<td style="text-aling: center;">직업</td>
-                                    <td colspan="2"><input type="text" class="form-control" name="userJob" id="userJob" value="<%= userInfo.getUserJob() %>"></td>
+                                    <td colspan="2"><input type="text" class="form-control" name="userJob" id="userJob" value="<%= userInfo.getUserJob() %>" style="width:95%;"></td>
                                 </tr>
                                 <tr>
                                 	<td style="text-aling: center;">관심사</td>
-                                    <td colspan="2"><input type="text" class="form-control" name="userFavorite" id="userFavorite" value="<%= userInfo.getUserFavorite() %>"></td>
+                                    <td colspan="2"><input type="text" class="form-control" name="userFavorite" id="userFavorite" value="<%= userInfo.getUserFavorite() %>" style="width:95%;"></td>
                                 </tr>
                                 <tr>
                                 	<td style="text-aling: center;">사진</td>
