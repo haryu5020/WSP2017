@@ -105,7 +105,7 @@
                                 </tr>
                                 <tr>
                                     <td>작성자 </td>
-                                    <td colspan=2><%= post.getPostTitle() %></td>
+                                    <td colspan=2><%= post.getUserName() %></td>
                                 </tr>
                                 <tr>
                                     <td>작성 일자 </td>

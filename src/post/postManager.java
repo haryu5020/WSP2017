@@ -8,7 +8,14 @@ public class postManager {
 	private String postContent;
 	private int postAvailable;
 	private String postFile;
+	private String userName;
 	
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 	public String getPostFile() {
 		return postFile;
 	}

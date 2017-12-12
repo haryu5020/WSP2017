@@ -2,6 +2,7 @@ package post;
 
 import java.sql.*;
 import java.util.ArrayList;
+import user.*;
 
 public class postDAO {
 	private Connection conn = null;
@@ -22,7 +23,7 @@ public class postDAO {
 		}
 	}
 	
-	//���� �����ð� �޾ƿ���
+	//占쏙옙占쏙옙 占쏙옙占쏙옙占시곤옙 占쌨아울옙占쏙옙
 	public String getDate() {
 		String SQL = "SELECT NOW()";
 		try {
@@ -38,7 +39,7 @@ public class postDAO {
 		
 	}
 	
-	//�Խñ� ��ȣ
+	//占쌉시깍옙 占쏙옙호
 	public int getNext() {
 		String SQL = "SELECT postID FROM POST ORDER BY postID desc";
 		try {
@@ -47,16 +48,17 @@ public class postDAO {
 			if(rs.next()) {
 				return rs.getInt(1) + 1;
 			}
-			return 1; // ù ��° �Խù��� ���
+			return 1; // 첫 占쏙옙째 占쌉시뱄옙占쏙옙 占쏙옙占�
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-		return -1; //DB����
+		return -1; //DB占쏙옙占쏙옙
 	}
 	
 	public int write(String postTitle, String userID, String postContent, String postFile) {
-		String SQL = "INSERT INTO POST VALUES (?, ?, ?, ?, ?, ?, ?)";
-		
+		String SQL = "INSERT INTO POST VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+		userDAO userDAO = new userDAO();
+		user userInfo = userDAO.getAllUserInfo(userID);
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
 			pstmt.setInt(1, getNext());
@@ -66,6 +68,7 @@ public class postDAO {
 			pstmt.setString(5, postContent);
 			pstmt.setInt(6, 1);
 			pstmt.setString(7, postFile);
+			pstmt.setString(8, userInfo.getUserName());
 			return pstmt.executeUpdate();
 			
 		} catch(Exception e) {
@@ -74,9 +77,9 @@ public class postDAO {
 		return -1;
 	}
 	
-/* �Խñ� ����Ʈ ��� �Լ� ����*/	
+/* 占쌉시깍옙 占쏙옙占쏙옙트 占쏙옙占� 占쌉쇽옙 占쏙옙占쏙옙*/	
 	
-	//�Խñ� ����Ʈ
+	//占쌉시깍옙 占쏙옙占쏙옙트
 	public ArrayList<postManager> getList(int pageNumber){
 		String SQL = "SELECT * FROM POST WHERE postID < ?  AND postAvailable = 1 ORDER BY postID DESC LIMIT 10";
 
@@ -87,6 +90,7 @@ public class postDAO {
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				postManager post = new postManager();
+
 				post.setPostID((rs.getInt(1)));
 				post.setPostTitle(rs.getString(2));
 				post.setUserID(rs.getString(3));
@@ -99,6 +103,7 @@ public class postDAO {
 				}else {
 					post.setPostFile(rs.getString(7));
 				}
+				post.setUserName(rs.getString(8));
 				list.add(post);
 			}
 		} catch(Exception e) {
@@ -107,7 +112,7 @@ public class postDAO {
 		return list; 
 	}
 	
-	//������ ���翩�� 
+	//占쏙옙占쏙옙占쏙옙 占쏙옙占썹여占쏙옙 
 	public boolean nextPage(int pageNumber) {
 		String SQL = "SELECT * FROM POST WHERE postID < ? AND postAvailable = 1 ORDER BY postID DESC LIMIT 10";
 		try {
@@ -120,12 +125,12 @@ public class postDAO {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-		return false; //DB����
+		return false; //DB占쏙옙占쏙옙
 	}
 	
-	/* �Խñ� ����Ʈ ��� �Լ� ��*/	
+	/* 占쌉시깍옙 占쏙옙占쏙옙트 占쏙옙占� 占쌉쇽옙 占쏙옙*/	
 	
-	/* �Խñ� ���� ��� */
+	/* 占쌉시깍옙 占쏙옙占쏙옙 占쏙옙占� */
 	public postManager getPost(int postID) {
 		String SQL = "SELECT * FROM POST WHERE postID = ?";
 		try {
@@ -151,10 +156,10 @@ public class postDAO {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-		return null; //DB����
+		return null; //DB占쏙옙占쏙옙
 	}
 	
-	/* �Խñ� ���� ���� */
+	/* 占쌉시깍옙 占쏙옙占쏙옙 占쏙옙占쏙옙 */
 	public int update(int postID, String postTitle, String postContent) {
 		String SQL = "UPDATE POST SET postTitle =?, postContent = ? WHERE postID = ?";
 		
@@ -171,7 +176,7 @@ public class postDAO {
 		return -1;
 	}
 	
-	/* �Խñ� ���� ���� */
+	/* 占쌉시깍옙 占쏙옙占쏙옙 占쏙옙占쏙옙 */
 	public int delete(int postID) {
 		String SQL = "UPDATE POST SET postAvailable = 0 WHERE postID = ?";
 		
