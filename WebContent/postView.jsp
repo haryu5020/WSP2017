@@ -62,7 +62,7 @@
         </div>
     </nav>
     <!-- Page Content -->
-    <div class="container" style="margin-top:30px;">
+    <div class="container" style="margin-top:30px;  margin-bottom: 10px;">
         <div class="row">
             <div class="col-lg-3">
                 <div class="container">
@@ -94,7 +94,7 @@
                         <table class="table table-striped" style="text-align: center;">
                             <thead>
                                 <tr>
-                                    <th colspan="3" style="text-aling: center;">게시 글</th>
+                                    <th colspan="3" style="text-align: center;">게시 글</th>
 
                                 </tr>
                             </thead>
@@ -113,7 +113,7 @@
                                 </tr>
                                 <tr>
                                     <td>내용 </td>
-                                    <td colspan=2 style="min-height: 200px; tet-aling: left;"><%= post.getPostContent().replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll("\n","<br>") %></td>
+                                    <td colspan=2 style="height: 200px; text-align: left;"><%= post.getPostContent().replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll("\n","<br>") %></td>
                                 </tr>
                                  <tr>
                                 		<td> 파일 </td>
