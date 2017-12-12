@@ -23,6 +23,11 @@
 	String realFolder = ""; /* 저장 경로 */
 	String uploadFile = ""; /* 파일명 */
 	String savePath = request.getServletContext().getRealPath("/file");
+	File isDir = new File(savePath);
+	if(!isDir.isDirectory()){
+		System.out.println("No directory");
+		isDir.mkdir();
+	}
 	String encoding = "euc-kr";		
 	MultipartRequest multi = new MultipartRequest(request, savePath, maxSize, encoding, new DefaultFileRenamePolicy());
 	uploadFile = multi.getFilesystemName("postFile");
