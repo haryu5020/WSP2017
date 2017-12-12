@@ -112,6 +112,9 @@
                                     <td><input type="text" class="form-control" placeholder="글 제목" name="postTitle" maxlength="50" style="width:100%;" value="<%= post.getPostTitle() %>"></td>
                                 </tr>
                                 <tr>
+                                	<td><input type="file" class="form-control" name="postFile"></td>
+                                </tr>
+                                <tr>
                                     <td><textarea class="form-control" placeholder="글 내용" name="postContent" maxlength="2048" style="width:100%; height:300px;"><%= post.getPostContent() %></textarea></td>
                                 </tr>
                             </tbody>
