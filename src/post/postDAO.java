@@ -149,6 +149,7 @@ public class postDAO {
 				}else {
 					post.setPostFile(rs.getString(7));
 				}
+				post.setUserName(rs.getString(8));
 				return post;
 			}
 		} catch(Exception e) {
@@ -158,14 +159,15 @@ public class postDAO {
 	}
 	
 	/* 占쌉시깍옙 占쏙옙占쏙옙 占쏙옙占쏙옙 */
-	public int update(int postID, String postTitle, String postContent) {
-		String SQL = "UPDATE POST SET postTitle =?, postContent = ? WHERE postID = ?";
+	public int update(int postID, String postTitle, String postContent, String postFile) {
+		String SQL = "UPDATE POST SET postTitle =?, postContent = ?, postFile = ? WHERE postID = ?";
 		
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
 			pstmt.setString(1, postTitle);
 			pstmt.setString(2, postContent);
-			pstmt.setInt(3, postID);
+			pstmt.setString(3, postFile);
+			pstmt.setInt(4, postID);
 			
 			return pstmt.executeUpdate();
 		} catch(Exception e) {

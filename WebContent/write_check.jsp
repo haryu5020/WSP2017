@@ -22,7 +22,8 @@
 	int maxSize = 1024*1024*10;
 	String realFolder = ""; /* 저장 경로 */
 	String uploadFile = ""; /* 파일명 */
-	String savePath = request.getServletContext().getRealPath("/file");
+	String savePath = request.getServletContext().getRealPath("file");
+	System.out.println(savePath);
 	File isDir = new File(savePath);
 	if(!isDir.isDirectory()){
 		System.out.println("No directory");

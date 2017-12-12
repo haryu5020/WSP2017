@@ -99,7 +99,7 @@
             <div class="col-lg-9">
                 <div class = "container">
                     <div class="row">
-                    <form method="post" action="update_check.jsp?postID=<%=postID %>" style="text-align: center;width:85%; margin-left:40px;">
+                    <form method="post" action="update_check.jsp?postID=<%=postID %>" enctype="multipart/form-data" style="text-align: center;width:85%; margin-left:40px;">
                         <table class="table table-striped" style="text-align: center; width:100%;">
                             <thead>
                                 <tr>
