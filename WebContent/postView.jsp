@@ -113,7 +113,7 @@
                                 </tr>
                                  <tr>
                                 		<td> ÆÄÀÏ </td>
-                                		<a href="file/<%=post.getPostFile()%>"> <%= post.getPostFile() %></a>
+                                		<a href="file/<%=post.getPostFile()%>" download> <%= post.getPostFile() %></a>
                                 </tr>
                             </tbody>
                              
