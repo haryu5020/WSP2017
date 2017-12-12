@@ -44,7 +44,6 @@
 			userID = (String) session.getAttribute("id");
 		}
 
-		
 		userDAO userDAO = new userDAO();
 		int result = userDAO.update(user);
 		if(result == -1){
@@ -58,6 +57,11 @@
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('Update your Information!')");
+			System.out.println(user.getUserEmail());
+			System.out.println(user.getUserName());
+			System.out.println(user.getUserFavorite());
+			System.out.println(user.getUserJob());
+			System.out.println(user.getUserProfile());
 			script.println("location.href = 'mypage.jsp'");
 			script.println("</script>");
 			}	

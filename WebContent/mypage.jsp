@@ -85,32 +85,32 @@
                         <table class="table table-striped" style="text-align: center;">
                             <thead >
                                 <tr>
-                                	<th colspan="3"">회원 정보 </th>
+                                	<th colspan="3">회원 정보 </th>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td style="text-aling: center;">아이디</td>
-                                	<td colspan="2"><input type="text" class="form-control" name="userEmail" value="<%= userID %>" readonly="readonly"></td>
+                                	<td colspan="2"><input type="text" class="form-control" name="userEmail" id="userEmail" value="<%= userID %>" readonly="readonly"></td>
                                 </tr>
                                 <tr>
                                 	<td style="text-aling: center;">이름</td>
-                                    <td colspan="2"><input type="text" class="form-control" name="userName" value="<%= userInfo.getUserName() %>"></td>
+                                    <td colspan="2"><input type="text" class="form-control" name="userName" id="userName" value="<%= userInfo.getUserName() %>"></td>
                                 </tr>
                                 <tr>
                                 	<td style="text-aling: center;">비밀번호</td>
-                                    <td colspan="2"><input type="password" class="form-control" name="userPassword"></td>
+                                    <td colspan="2"><input type="password" class="form-control" name="userPassword" id="userPassword"></td>
                                 </tr>
                                 <tr>
                                 	<td style="text-aling: center;">직업</td>
-                                    <td colspan="2"><input type="text" class="form-control" name="userJob" value="<%= userInfo.getUserJob() %>"></td>
+                                    <td colspan="2"><input type="text" class="form-control" name="userJob" id="userJob" value="<%= userInfo.getUserJob() %>"></td>
                                 </tr>
                                 <tr>
                                 	<td style="text-aling: center;">관심사</td>
-                                    <td colspan="2"><input type="text" class="form-control" name="userJob" value="<%= userInfo.getUserFavorite() %>"></td>
+                                    <td colspan="2"><input type="text" class="form-control" name="userFavorite" id="userFavorite" value="<%= userInfo.getUserFavorite() %>"></td>
                                 </tr>
                                 <tr>
                                 	<td style="text-aling: center;">사진</td>
-                                    <td colspan="2"></td>
+                                    <td colspan="2"><input type="text" class="form-control" name="userProfile" id="userProfile" value="1"></td>
                                 </tr>
                             </tbody>
                         </table>
